@@ -65,7 +65,6 @@
     <Compile Include="Modules\LightSelector\ILightSelectorView.cs" />
     <Compile Include="LightCore\Connection.cs" />
     <Compile Include="LightCore\Light.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="Modules\LightSelector\LightSelectorFactory.cs" />
     <Compile Include="Modules\LightSelector\LightSelectorPresenter.cs" />
     <Compile Include="Modules\ModuleCatalog.cs" />

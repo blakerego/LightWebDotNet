@@ -10,7 +10,5 @@ namespace gigaFlash.Mainform
     public interface IMainformView
     {
         event VoidDelegate LightSelectorClicked;
-
-        Control Control { get; } 
     }
 }

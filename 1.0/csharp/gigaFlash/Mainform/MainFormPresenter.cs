@@ -32,13 +32,6 @@ namespace gigaFlash.Mainform
 
         protected LightState mState; 
 
-        public Form View
-        {
-            get
-            {
-                return mView.Control as Form; 
-            }
-        }
         #endregion
     }
 }
