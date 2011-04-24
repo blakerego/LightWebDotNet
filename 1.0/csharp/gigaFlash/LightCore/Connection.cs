@@ -17,22 +17,17 @@ namespace gigaFlash
             int port = System.Convert.ToInt16(mPort, 10);
             IPAddress remoteIPAddress = System.Net.IPAddress.Parse(IP);
             IPEndPoint remoteEndPoint = new System.Net.IPEndPoint(remoteIPAddress, port);
-            mSocket.Connect(remoteEndPoint);
-            
-            //String szData = "Hello There";
-            //byte[] byData = System.Text.Encoding.ASCII.GetBytes(szData);
-            //mSocket.Send(byData);
+            mSocket.Connect(remoteEndPoint);            
         }
         #endregion 
 
         #region Public Methods
         public void Send(byte[] pByteArray)
         {
-
-            //BinaryFormatter bf = new BinaryFormatter();
-            //bf.Serialize(pByteArray); 
-
-            mSocket.Send(pByteArray); 
+            mSocket.Send(pByteArray);
+            UdpClient udpclient = new UdpClient(LIGHT_BOX_IP, 6038);
+            udpclient.Client = mSocket;
+            udpclient.Send(pByteArray, pByteArray.Count()); 
         }
         #endregion 
 

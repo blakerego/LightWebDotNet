@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using gigaFlash.Mainform;
 
-namespace gigaFlash
+namespace GigaFlashWinform
 {
     static class Program
     {
@@ -16,7 +16,9 @@ namespace gigaFlash
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainFormView());
+            MainFormView view = new MainFormView();
+            MainFormPresenter pres = new MainFormPresenter(view);
+            Application.Run(pres.View);
         }
     }
 }

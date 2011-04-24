@@ -7,19 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace gigaFlash
+namespace gigaFlash.Modules.Snake
 {
-    public partial class InitialUI : Form
+    public partial class SnakeView : Form
     {
-        public InitialUI()
+        public SnakeView()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LightState s = new LightState();
-            s.Update(); 
         }
     }
 }
