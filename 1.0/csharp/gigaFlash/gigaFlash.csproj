@@ -60,13 +60,9 @@
     </Compile>
     <Compile Include="Mainform\MainFormPresenter.cs" />
     <Compile Include="Modules\ILightModuleFactoryBase.cs" />
+    <Compile Include="Modules\IViewFactory.cs" />
     <Compile Include="Modules\LightModulePresenterBase.cs" />
-    <Compile Include="Modules\LightSelector\LightSelector.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\LightSelector\LightSelector.Designer.cs">
-      <DependentUpon>LightSelector.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Modules\LightSelector\ILightSelectorView.cs" />
     <Compile Include="LightCore\Connection.cs" />
     <Compile Include="LightCore\Light.cs" />
     <Compile Include="Main.cs" />
@@ -74,24 +70,11 @@
     <Compile Include="Modules\LightSelector\LightSelectorPresenter.cs" />
     <Compile Include="Modules\ModuleCatalog.cs" />
     <Compile Include="Modules\ModuleOptions.cs" />
+    <Compile Include="Modules\Snake\ISnakeView.cs" />
     <Compile Include="Modules\Snake\SnakePresenter.cs" />
-    <Compile Include="Modules\Snake\SnakeView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Snake\SnakeView.Designer.cs">
-      <DependentUpon>SnakeView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mainform\MainformButtons\MainformButtonView.resx">
       <DependentUpon>MainformButtonView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\LightSelector\LightSelector.resx">
-      <DependentUpon>LightSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Snake\SnakeView.resx">
-      <DependentUpon>SnakeView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

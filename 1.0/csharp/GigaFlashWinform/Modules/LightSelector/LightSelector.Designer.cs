@@ -35,7 +35,7 @@
             this.mUpdateButton.TabIndex = 0;
             this.mUpdateButton.Text = "Update";
             this.mUpdateButton.UseVisualStyleBackColor = true;
-            this.mUpdateButton.Click += new System.EventHandler(this.button1_Click);
+            this.mUpdateButton.Click += new System.EventHandler(this.HandleUpdateClicked);
             // 
             // button2
             // 

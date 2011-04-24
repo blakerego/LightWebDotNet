@@ -7,17 +7,17 @@ namespace gigaFlash.Modules
 {
     public interface ILightModuleFactoryBase
     {
-        LightModulePresenterBase CreateBase(ModuleOptions pModuleType); 
+        LightModulePresenterBase CreateBase(ModuleOptions pModuleType, LightState pState); 
     }
 
     public abstract class LightModuleFactoryBase<T> : ILightModuleFactoryBase
         where T : LightModulePresenterBase
     {
-        public abstract T Create(ModuleOptions pModuleType);
+        public abstract T Create(ModuleOptions pModuleType, LightState pState);
 
-        public LightModulePresenterBase CreateBase(ModuleOptions pModuleType)
+        public LightModulePresenterBase CreateBase(ModuleOptions pModuleType, LightState pState)
         {
-            return Create(pModuleType); 
+            return Create(pModuleType, pState); 
         }
     }
 }

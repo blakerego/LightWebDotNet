@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using gigaFlash.Mainform;
+using gigaFlash;
+using gigaFlash.Modules;
+using GigaFlashWinform.Modules;
 
 namespace GigaFlashWinform
 {
-    static class Program
+    static class MainEntryPoint
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,9 +19,18 @@ namespace GigaFlashWinform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            LoadModules(); 
+
+            LightState state = new LightState(4); 
             MainFormView view = new MainFormView();
-            MainFormPresenter pres = new MainFormPresenter(view);
+            MainFormPresenter pres = new MainFormPresenter(view, state);
             Application.Run(pres.View);
+        }
+
+        private static void LoadModules()
+        {
+            ModuleCatalog.Instance.Add(ModuleOptions.LightSelector, new LightSelectorViewFactory()); 
         }
     }
 }

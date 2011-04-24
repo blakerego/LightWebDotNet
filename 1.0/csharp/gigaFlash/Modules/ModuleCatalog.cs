@@ -10,17 +10,17 @@ namespace gigaFlash.Modules
         #region Singleton
         private ModuleCatalog()
         {
-            mInstance = this; 
+            sInstance = this; 
         }
         
-        private ModuleCatalog mInstance;
+        private static ModuleCatalog sInstance;
 
-        public ModuleCatalog Instance
+        public static ModuleCatalog Instance
         {
             get
             {
-                if (mInstance != null)
-                    return mInstance;
+                if (sInstance != null)
+                    return sInstance;
                 else
                     return new ModuleCatalog(); 
             }
@@ -28,27 +28,27 @@ namespace gigaFlash.Modules
         #endregion
 
         #region Public Methods 
-        public void Register<T>(T pInstance)
+        public void Add(ModuleOptions pModuleType, Object pInstance)
         {
-            if (!mCatalog.ContainsKey(typeof(T)))
+            if (!mCatalog.ContainsKey(pModuleType))
             {
-                mCatalog.Add(typeof(T), pInstance); 
+                mCatalog.Add(pModuleType, pInstance); 
             }
         }
 
-        public T Get<T>()
+        public Object Get(ModuleOptions pModuleType)
         {
-            if (mCatalog.ContainsKey(typeof(T)))
+            if (mCatalog.ContainsKey(pModuleType))
             {
-                return (T)mCatalog[typeof(T)];
+                return mCatalog[pModuleType];
             }
             else
-                return default(T); 
+                return null; 
         }
         #endregion
 
         #region Members / Properties
-        protected Dictionary<Type, Object> mCatalog = new Dictionary<Type, object>();
+        protected Dictionary<ModuleOptions, Object> mCatalog = new Dictionary<ModuleOptions, object>();
         #endregion 
     }
 }

@@ -7,11 +7,12 @@ namespace gigaFlash.Modules
 {
     public class LightSelectorFactory : LightModuleFactoryBase<LightSelectorPresenter>
     {
-        public override LightSelectorPresenter Create(ModuleOptions pModuleType)
+        public override LightSelectorPresenter Create(ModuleOptions pModuleType, LightState pState)
         {
-            LightState s = new LightState();
-            LightSelector view = new LightSelector(); 
-            return new LightSelectorPresenter(view, s); 
+            IViewFactory<ILightSelectorView> viewFactory 
+                = (IViewFactory<ILightSelectorView>) 
+                ModuleCatalog.Instance.Get(ModuleOptions.LightSelector);
+            return new LightSelectorPresenter(viewFactory.Create(), pState); 
         }
     }
 }
