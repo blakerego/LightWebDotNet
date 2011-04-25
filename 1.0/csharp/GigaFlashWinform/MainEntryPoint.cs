@@ -26,6 +26,7 @@ namespace GigaFlashWinform
             MainFormView view = new MainFormView();
             MainFormPresenter pres = new MainFormPresenter(view, state);
             Application.Run(view);
+			pres.GetType(); 
         }
 
         private static void LoadModules()

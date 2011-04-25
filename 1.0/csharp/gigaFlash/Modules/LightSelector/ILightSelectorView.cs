@@ -8,17 +8,12 @@ using System.Windows.Forms;
 
 namespace gigaFlash.Modules
 {
-    public interface ILightSelectorView
+    public interface ILightSelectorView : IModuleView
     {
         /// <summary>
         /// Event that fires when a new color is selected. 
         /// </summary>
         event TypedDelegate<Color> UpdateColorFired;
-
-        /// <summary>
-        /// Queues the UI form or website to be shown. 
-        /// </summary>
-        void Show();
 
         /// <summary>
         /// Gets or sets the selected items from the light selector view. 
