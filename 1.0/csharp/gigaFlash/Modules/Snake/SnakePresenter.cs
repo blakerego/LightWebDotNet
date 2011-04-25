@@ -36,19 +36,19 @@ namespace gigaFlash.Modules.Snake
 		#region Handlers
 		protected virtual void OnSnakeFired() 
 		{
-			int snakeParts = mLightState.Lights.Count; 
+			//int snakeParts = mLightState.Lights.Count; 
 			Color c = Color.Aqua; 
 			foreach (Light turn in mLightState.Lights) 
 			{
 				// Each light get its turn to be the head of the snake for the given color. 
 				
-				int snakeHead = mLightState.Lights.IndexOf(turn); 
+				int snakeHead = mLightState.Lights.IndexOf(turn) + 1; 
 				
 				foreach(Light light in mLightState.Lights) 
 				{
-					int currentIndex = mLightState.Lights.IndexOf(light);
+					int currentIndex = mLightState.Lights.IndexOf(light) + 1;
 					
-					int distanceFromHead = snakeHead % currentIndex; 
+					int distanceFromHead = currentIndex % snakeHead; 
 
 					light.Red   = (int) c.R / distanceFromHead^2;
 					light.Green = (int) c.G / distanceFromHead^2; 
