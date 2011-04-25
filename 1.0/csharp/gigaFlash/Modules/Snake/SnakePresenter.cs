@@ -11,6 +11,9 @@ namespace gigaFlash.Modules.Snake
 	/// The logic in this class allows the lights to move in a snake-like fashion around the room. 
 	/// By this I mean :         
 	/// ... -  (|) - (||) - (|||)  
+	/// 
+	/// At the snake head, the color will be at full intensity. The next in line will be at half intensity. 
+	/// 
 	/// </summary>
     public class SnakePresenter : LightModulePresenterBase
     {
@@ -43,7 +46,15 @@ namespace gigaFlash.Modules.Snake
 				
 				foreach(Light light in mLightState.Lights) 
 				{
-					int currentIndex = mLightState.Lights.IndexOf(light); 
+					int currentIndex = mLightState.Lights.IndexOf(light);
+					
+					int distanceFromHead = snakeHead % currentIndex; 
+
+					light.Red   = (int) c.R / distanceFromHead^2;
+					light.Green = (int) c.G / distanceFromHead^2; 
+					light.Blue  = (int) c.B / distanceFromHead^2; 
+					
+					/*
 					if (currentIndex == snakeHead) 
 					{
 						light.Color = c; 
@@ -66,6 +77,7 @@ namespace gigaFlash.Modules.Snake
 					{
 						light.Color = Color.Black; 
 					}
+					*/
 				}
 				
 				mLightState.Update(); 
