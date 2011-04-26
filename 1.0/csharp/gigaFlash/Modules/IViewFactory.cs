@@ -7,6 +7,9 @@ namespace gigaFlash.Modules
 {
     public interface IViewFactory<T>
     {
+        /// <summary>
+        /// Returns a view of the given type. 
+        /// </summary>
         T Create();
     }
 }

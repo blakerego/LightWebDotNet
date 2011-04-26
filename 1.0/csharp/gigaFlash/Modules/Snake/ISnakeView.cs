@@ -13,5 +13,15 @@ namespace gigaFlash.Modules
 		/// The user has triggered the event to run the snake.  
 		/// </summary>
 		event VoidDelegate RunSnakeFired;
+
+        /// <summary>
+        /// The user wants to stop the snake. 
+        /// </summary>
+        event VoidDelegate StopSnakeFired;
+
+        /// <summary>
+        /// Allows the RunSnake button to be enabled. 
+        /// </summary>
+        bool RunSnakeButtonEnabled { get; set; } 
     }
 }

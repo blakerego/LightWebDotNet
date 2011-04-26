@@ -34,7 +34,9 @@ namespace gigaFlash.Mainform
             }
         }
 
-        public event gigaFlash.Delegates.VoidDelegate LightSelectorClicked;
+        public event VoidDelegate LightSelectorClicked;
+
+        public event VoidDelegate SnakeModuleClicked; 
         #endregion
 
         #region Handlers
@@ -43,5 +45,10 @@ namespace gigaFlash.Mainform
             EventUtils.FireEvent(LightSelectorClicked);
         }
         #endregion 
+
+        private void HandleSnakeModuleClicked(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(SnakeModuleClicked); 
+        }
     }
 }

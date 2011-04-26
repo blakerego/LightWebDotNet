@@ -36,7 +36,7 @@ namespace gigaFlash.Modules
             }
         }
 
-        public Object Get(ModuleOptions pModuleType)
+        public Object GetFactory(ModuleOptions pModuleType)
         {
             if (mCatalog.ContainsKey(pModuleType))
             {
@@ -44,6 +44,16 @@ namespace gigaFlash.Modules
             }
             else
                 return null; 
+        }
+
+        public T GetView<T>(ModuleOptions pModuleType)
+        {
+            if (mCatalog.ContainsKey(pModuleType))
+            {
+                IViewFactory<T> factory = (IViewFactory<T>)mCatalog[pModuleType];
+                return factory.Create();
+            }
+            else return default(T); 
         }
         #endregion
 

@@ -15,15 +15,23 @@ namespace gigaFlash.Mainform
             mView = pView;
             mState = pState; 
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
+            mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
         }
         #endregion 
 
         #region Handlers 
-        void OnLightSelectorClicked()
+        protected virtual void OnLightSelectorClicked()
         {
             LightSelectorFactory f = new LightSelectorFactory();
             LightSelectorPresenter p = f.Create(ModuleOptions.LightSelector, mState);
             p.ShowUI(); 
+        }
+
+        protected virtual void OnSnakeModuleClicked()
+        {
+            SnakePresFactory factory = new SnakePresFactory();
+            SnakePresenter pres = factory.Create(ModuleOptions.Snake, mState);
+            pres.ShowUI(); 
         }
         #endregion 
 

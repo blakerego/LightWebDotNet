@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using gigaFlash.Delegates;
 
-namespace gigaFlash.Modules.Snake
+namespace gigaFlash.Modules
 {
     public partial class SnakeView : Form, ISnakeView
     {
@@ -21,6 +21,32 @@ namespace gigaFlash.Modules.Snake
 		
 		#region Members / Properties
 		public event VoidDelegate RunSnakeFired;
+
+        public event VoidDelegate StopSnakeFired;
+
+        public bool RunSnakeButtonEnabled
+        {
+            get
+            {
+                return mSnakeButton.Enabled; 
+            }
+            set
+            {
+                mSnakeButton.Enabled = value;
+            }
+        }
 		#endregion
+
+        #region Handlers
+        private void HandleRunSnakeClicked(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(RunSnakeFired); 
+        }
+
+        private void HandleStopSnakeClicked(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(StopSnakeFired);
+        }
+        #endregion 
     }
 }

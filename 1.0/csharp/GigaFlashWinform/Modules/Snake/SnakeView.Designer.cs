@@ -1,4 +1,4 @@
-﻿namespace gigaFlash.Modules.Snake
+﻿namespace gigaFlash.Modules
 {
     partial class SnakeView
     {
@@ -31,6 +31,8 @@
             this.mClockwise = new System.Windows.Forms.RadioButton();
             this.mCounterClockwise = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mSnakeButton = new System.Windows.Forms.Button();
+            this.mStopButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,15 +64,37 @@
             this.groupBox1.Controls.Add(this.mCounterClockwise);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.Size = new System.Drawing.Size(200, 85);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // mSnakeButton
+            // 
+            this.mSnakeButton.Location = new System.Drawing.Point(12, 121);
+            this.mSnakeButton.Name = "mSnakeButton";
+            this.mSnakeButton.Size = new System.Drawing.Size(75, 23);
+            this.mSnakeButton.TabIndex = 3;
+            this.mSnakeButton.Text = "Snake!";
+            this.mSnakeButton.UseVisualStyleBackColor = true;
+            this.mSnakeButton.Click += new System.EventHandler(this.HandleRunSnakeClicked);
+            // 
+            // mStopButton
+            // 
+            this.mStopButton.Location = new System.Drawing.Point(93, 121);
+            this.mStopButton.Name = "mStopButton";
+            this.mStopButton.Size = new System.Drawing.Size(75, 23);
+            this.mStopButton.TabIndex = 4;
+            this.mStopButton.Text = "Stop";
+            this.mStopButton.UseVisualStyleBackColor = true;
+            this.mStopButton.Click += new System.EventHandler(this.HandleStopSnakeClicked);
             // 
             // SnakeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(229, 187);
+            this.Controls.Add(this.mStopButton);
+            this.Controls.Add(this.mSnakeButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "SnakeView";
             this.Text = "SnakeView";
@@ -85,5 +109,7 @@
         private System.Windows.Forms.RadioButton mClockwise;
         private System.Windows.Forms.RadioButton mCounterClockwise;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button mSnakeButton;
+        private System.Windows.Forms.Button mStopButton;
     }
 }
