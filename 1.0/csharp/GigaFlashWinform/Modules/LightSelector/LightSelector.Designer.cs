@@ -1,4 +1,4 @@
-﻿namespace gigaFlash
+﻿namespace GigaFlashWinform
 {
     partial class LightSelector
     {

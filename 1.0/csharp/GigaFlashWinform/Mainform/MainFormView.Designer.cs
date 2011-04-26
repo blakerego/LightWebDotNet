@@ -1,4 +1,4 @@
-﻿namespace gigaFlash.Mainform
+﻿namespace GigaFlashWinform
 {
     partial class MainFormView
     {
@@ -31,13 +31,17 @@
             this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.mAmpSineButton = new System.Windows.Forms.Button();
             this.mFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mFlowLayoutPanel
             // 
+            this.mFlowLayoutPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.mFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mFlowLayoutPanel.Controls.Add(this.button1);
             this.mFlowLayoutPanel.Controls.Add(this.button2);
+            this.mFlowLayoutPanel.Controls.Add(this.mAmpSineButton);
             this.mFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.mFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
@@ -65,12 +69,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.HandleSnakeModuleClicked);
             // 
+            // mAmpSineButton
+            // 
+            this.mAmpSineButton.Location = new System.Drawing.Point(3, 61);
+            this.mAmpSineButton.Name = "mAmpSineButton";
+            this.mAmpSineButton.Size = new System.Drawing.Size(121, 23);
+            this.mAmpSineButton.TabIndex = 2;
+            this.mAmpSineButton.Text = "Amp Sine";
+            this.mAmpSineButton.UseVisualStyleBackColor = true;
+            // 
             // MainFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(136, 328);
             this.Controls.Add(this.mFlowLayoutPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainFormView";
             this.Text = "HydrogenHaus";
             this.mFlowLayoutPanel.ResumeLayout(false);
@@ -83,5 +97,6 @@
         private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button mAmpSineButton;
     }
 }

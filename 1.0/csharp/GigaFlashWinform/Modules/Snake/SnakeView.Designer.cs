@@ -1,4 +1,4 @@
-﻿namespace gigaFlash.Modules
+﻿namespace GigaFlashWinform
 {
     partial class SnakeView
     {

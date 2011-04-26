@@ -8,10 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using gigaFlash.Modules;
 using gigaFlash.Delegates;
+using gigaFlash;
 
-namespace gigaFlash
+namespace GigaFlashWinform
 {
-    public partial class LightSelector : Form, ILightSelectorView
+    public partial class LightSelector : BaseForm, ILightSelectorView
     {
         #region Constructor
         public LightSelector()

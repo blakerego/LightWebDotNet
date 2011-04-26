@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using gigaFlash.Delegates;
+using gigaFlash.Modules;
 
-namespace gigaFlash.Modules
+namespace GigaFlashWinform
 {
-    public partial class SnakeView : Form, ISnakeView
+    public partial class SnakeView : BaseForm, ISnakeView
     {
 		#region Constructor
         public SnakeView()

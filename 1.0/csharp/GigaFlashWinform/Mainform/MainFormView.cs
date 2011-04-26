@@ -9,9 +9,10 @@ using System.Windows.Forms;
 using gigaFlash.Mainform;
 using gigaFlash.Delegates;
 
-namespace gigaFlash.Mainform
+
+namespace GigaFlashWinform
 {
-    public partial class MainFormView : Form, IMainformView
+    public partial class MainFormView : BaseForm, IMainformView
     {
         #region Constructor 
         public MainFormView()
