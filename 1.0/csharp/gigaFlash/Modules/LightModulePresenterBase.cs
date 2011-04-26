@@ -8,18 +8,24 @@ namespace gigaFlash.Modules
     public abstract class LightModulePresenterBase
     {
         #region Constructor
-        public LightModulePresenterBase(LightState pLightState)
+        public LightModulePresenterBase(IModuleView pView, LightState pLightState)
         {
-            mLightState = pLightState; 
+            mLightState = pLightState;
+            mModuleView = pView;
         }
         #endregion
 
         #region Members / Properties
         protected LightState mLightState;
+
+        protected IModuleView mModuleView; 
         #endregion
 
-        #region Abstract Methods
-        public abstract void ShowUI(); 
+        #region Public Methods
+        public void ShowUI()
+        {
+            mModuleView.Show(); 
+        }
         #endregion 
     }
 }

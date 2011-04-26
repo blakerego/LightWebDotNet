@@ -37,7 +37,9 @@ namespace GigaFlashWinform
 
         public event VoidDelegate LightSelectorClicked;
 
-        public event VoidDelegate SnakeModuleClicked; 
+        public event VoidDelegate SnakeModuleClicked;
+
+        public event VoidDelegate AmpSineClicked; 
         #endregion
 
         #region Handlers
@@ -50,6 +52,11 @@ namespace GigaFlashWinform
         private void HandleSnakeModuleClicked(object sender, EventArgs e)
         {
             EventUtils.FireEvent(SnakeModuleClicked); 
+        }
+
+        private void mAmpSineButton_Click(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(AmpSineClicked); 
         }
     }
 }

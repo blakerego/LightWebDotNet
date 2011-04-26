@@ -32,7 +32,8 @@ namespace GigaFlashWinform
         private static void LoadModules()
         {
             ModuleCatalog.Instance.Add(ModuleOptions.LightSelector, new LightSelectorViewFactory());
-            ModuleCatalog.Instance.Add(ModuleOptions.Snake, new SnakeViewFactory()); 
+            ModuleCatalog.Instance.Add(ModuleOptions.Snake, new SnakeViewFactory());
+            ModuleCatalog.Instance.Add(ModuleOptions.AmpSine, new AmpSineViewFactory());  
         }
     }
 }

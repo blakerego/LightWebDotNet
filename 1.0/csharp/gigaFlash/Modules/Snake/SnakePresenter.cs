@@ -20,7 +20,7 @@ namespace gigaFlash.Modules
     {
         #region Constructor 
         public SnakePresenter(ISnakeView pView, LightState pState)
-            : base(pState)
+            : base(pView, pState)
         {
             mView = pView; 
 			mView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnSnakeFired);
@@ -33,13 +33,6 @@ namespace gigaFlash.Modules
 
         #endregion 
 
-        #region Public Methods
-        public override void ShowUI()
-        {
-			mView.Show(); 
-        }
-        #endregion 
-		
 		#region Handlers
 		protected virtual void OnSnakeFired() 
 		{
@@ -112,7 +105,7 @@ namespace gigaFlash.Modules
         #region Members / Properties
         protected ISnakeView mView;
 
-        BackgroundWorker mSnakeWorker;
+        protected BackgroundWorker mSnakeWorker;
 
         protected bool mContinueSnaking = true; 
         #endregion

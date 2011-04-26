@@ -6,7 +6,7 @@ using gigaFlash.Delegates;
 
 namespace gigaFlash.Modules
 {
-    public interface IThraededView : IModuleView
+    public interface IThreadedView : IModuleView
     {
         /// <summary>
         /// The user has triggered the event to run the snake.  

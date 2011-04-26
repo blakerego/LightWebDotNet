@@ -16,22 +16,34 @@ namespace gigaFlash.Mainform
             mState = pState; 
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
+            mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
         }
         #endregion 
 
         #region Handlers 
         protected virtual void OnLightSelectorClicked()
         {
-            LightSelectorFactory f = new LightSelectorFactory();
-            LightSelectorPresenter p = f.Create(ModuleOptions.LightSelector, mState);
-            p.ShowUI(); 
+            GetPresenter<LightSelectorPresenter, LightSelectorFactory>().ShowUI(); 
         }
 
         protected virtual void OnSnakeModuleClicked()
         {
-            SnakePresFactory factory = new SnakePresFactory();
-            SnakePresenter pres = factory.Create(ModuleOptions.Snake, mState);
-            pres.ShowUI(); 
+            GetPresenter<SnakePresenter, SnakePresFactory>().ShowUI(); 
+        }
+
+        protected virtual void OnAmpSineClicked()
+        {
+            GetPresenter<AmpSinePresenter, AmpSinePresFactory>().ShowUI(); 
+        }
+        #endregion 
+
+        #region Public Methods
+        public Pres GetPresenter<Pres, Factory>()
+            where Pres : LightModulePresenterBase
+            where Factory : LightModuleFactoryBase<Pres>
+        {
+            Factory factory = Activator.CreateInstance(typeof(Factory)) as Factory;
+            return factory.Create(mState);
         }
         #endregion 
 

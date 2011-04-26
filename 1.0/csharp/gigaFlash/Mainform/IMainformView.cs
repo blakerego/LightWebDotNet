@@ -19,6 +19,12 @@ namespace gigaFlash.Mainform
         /// The event that is raised when the snake module 
         /// is selected. 
         /// </summary>
-        event VoidDelegate SnakeModuleClicked; 
+        event VoidDelegate SnakeModuleClicked;
+
+        /// <summary>
+        /// This is the event that is raised when amp sine is
+        /// clicked
+        /// </summary>
+        event VoidDelegate AmpSineClicked; 
     }
 }

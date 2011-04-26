@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace gigaFlash.Modules
 {
-    public interface ISnakeView : IThraededView
+    public interface ISnakeView : IThreadedView
     {
 
         /// <summary>

@@ -5,19 +5,14 @@ using System.Text;
 
 namespace gigaFlash.Modules
 {
-    public interface ILightModuleFactoryBase
-    {
-        LightModulePresenterBase CreateBase(ModuleOptions pModuleType, LightState pState); 
-    }
-
-    public abstract class LightModuleFactoryBase<T> : ILightModuleFactoryBase
+    public abstract class LightModuleFactoryBase<T> 
         where T : LightModulePresenterBase
     {
-        public abstract T Create(ModuleOptions pModuleType, LightState pState);
+        public abstract T Create(LightState pState);
 
         public LightModulePresenterBase CreateBase(ModuleOptions pModuleType, LightState pState)
         {
-            return Create(pModuleType, pState); 
+            return Create(pState); 
         }
     }
 }

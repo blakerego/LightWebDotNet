@@ -10,18 +10,11 @@ namespace gigaFlash.Modules
     {
         #region Constructor
         public LightSelectorPresenter(ILightSelectorView pView, LightState pLightState)
-            : base(pLightState)
+            : base(pView, pLightState)
         {
             mView = pView;
             mView.UpdateColorFired += new gigaFlash.Delegates.TypedDelegate<System.Drawing.Color>(OnUpdateColorFired);
             mView.ClearClicked += new gigaFlash.Delegates.VoidDelegate(OnClearClicked);
-        }
-        #endregion 
-
-        #region Public UI
-        public override void ShowUI()
-        {
-            mView.Show(); 
         }
         #endregion 
 
