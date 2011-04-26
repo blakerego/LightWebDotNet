@@ -37,7 +37,7 @@ namespace gigaFlash.Modules
 		protected virtual void OnSnakeFired() 
 		{
             mContinueSnaking = true; 
-            mView.RunSnakeButtonEnabled = false; 
+            mView.RunButtonEnabled = false; 
             mSnakeWorker.RunWorkerAsync();
 		}
 
@@ -56,7 +56,7 @@ namespace gigaFlash.Modules
         /// <param name="e"></param>
         protected void SnakeFinished(object sender, RunWorkerCompletedEventArgs e)
         {
-            mView.RunSnakeButtonEnabled = true;
+            mView.RunButtonEnabled = true;
         }
 
 
@@ -68,10 +68,10 @@ namespace gigaFlash.Modules
         /// <param name="e"></param>
         protected void StartSnakeThread(object sender, DoWorkEventArgs e)
         {
+            Color c = ColorUtils.GetRandomColor(); 
             while (mContinueSnaking)
             {
                 int snakeParts = mLightState.Lights.Count;
-                Color c = Color.White;
                 foreach (Light turn in mLightState.Lights)
                 {
                     // Each light get its turn to be the head of the snake for the given color. 
@@ -93,7 +93,7 @@ namespace gigaFlash.Modules
                     }
 
                     mLightState.Update();
-                    System.Threading.Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(100);
                 }
             }
             mLightState.Clear();

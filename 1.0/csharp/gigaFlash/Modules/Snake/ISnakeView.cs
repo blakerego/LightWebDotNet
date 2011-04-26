@@ -9,10 +9,5 @@ namespace gigaFlash.Modules
 {
     public interface ISnakeView : IThreadedView
     {
-
-        /// <summary>
-        /// Allows the RunSnake button to be enabled. 
-        /// </summary>
-        bool RunSnakeButtonEnabled { get; set; } 
     }
 }

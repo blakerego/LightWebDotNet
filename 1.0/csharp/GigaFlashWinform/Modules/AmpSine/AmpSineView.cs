@@ -21,9 +21,35 @@ namespace GigaFlashWinform.Modules
         #endregion
 
         #region Members / Properties
-        public event gigaFlash.Delegates.VoidDelegate StartFired;
+        public event VoidDelegate StartFired;
 
-        public event gigaFlash.Delegates.VoidDelegate StopFired;
+        public event VoidDelegate StopFired;
+
+        public event VoidDelegate TwinkleFired; 
+
+        public bool RunButtonEnabled
+        {
+            get
+            {
+                return mUniformButton.Enabled;
+            }
+            set
+            {
+                mUniformButton.Enabled = value;
+            }
+        }
+
+        public bool TwinkleButtonEnabled
+        {
+            get
+            {
+                return mTwinkleButton.Enabled; 
+            }
+            set
+            {
+                mTwinkleButton.Enabled = value; 
+            }
+        }
         #endregion
 
         #region Handlers
@@ -36,6 +62,12 @@ namespace GigaFlashWinform.Modules
         {
             EventUtils.FireEvent(StopFired); 
         }
+
+        private void mTwinkleButton_Click(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(TwinkleFired); 
+        }
         #endregion 
+
     }
 }

@@ -25,7 +25,7 @@ namespace GigaFlashWinform
 
         public event VoidDelegate StopFired;
 
-        public bool RunSnakeButtonEnabled
+        public bool RunButtonEnabled
         {
             get
             {
