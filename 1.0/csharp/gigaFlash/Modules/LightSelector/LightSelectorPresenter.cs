@@ -30,7 +30,7 @@ namespace gigaFlash.Modules
         {
             foreach (object selectedObject in mView.SelectedItems)
             {
-                int selectedindex = mView.SelectedItems.IndexOf(selectedObject);
+                int selectedindex = mView.Items.IndexOf(selectedObject);
                 mLightState.Lights[selectedindex].Color = value;
             }
             mLightState.Update();

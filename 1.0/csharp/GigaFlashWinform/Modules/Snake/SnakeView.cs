@@ -20,9 +20,9 @@ namespace gigaFlash.Modules
 		#endregion
 		
 		#region Members / Properties
-		public event VoidDelegate RunSnakeFired;
+		public event VoidDelegate StartFired;
 
-        public event VoidDelegate StopSnakeFired;
+        public event VoidDelegate StopFired;
 
         public bool RunSnakeButtonEnabled
         {
@@ -40,12 +40,12 @@ namespace gigaFlash.Modules
         #region Handlers
         private void HandleRunSnakeClicked(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(RunSnakeFired); 
+            EventUtils.FireEvent(StartFired); 
         }
 
         private void HandleStopSnakeClicked(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StopSnakeFired);
+            EventUtils.FireEvent(StopFired);
         }
         #endregion 
     }

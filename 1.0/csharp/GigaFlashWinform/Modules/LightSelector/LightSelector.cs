@@ -94,6 +94,19 @@ namespace gigaFlash
                 }
             }
         }
+
+        public List<Object> Items
+        {
+            get
+            {
+                List<Object> items = new List<object>();
+                foreach (Object obj in mListbox.Items)
+                {
+                    items.Add(obj);
+                }
+                return items; 
+            }
+        }
         #endregion
 
         #region Dispose

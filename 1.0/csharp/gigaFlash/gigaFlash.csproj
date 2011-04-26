@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Mainform\MainFormPresenter.cs" />
     <Compile Include="Modules\ILightModuleFactoryBase.cs" />
+    <Compile Include="Modules\IThraededView.cs" />
     <Compile Include="Modules\IViewFactory.cs" />
     <Compile Include="Modules\LightModulePresenterBase.cs" />
     <Compile Include="Modules\LightSelector\ILightSelectorView.cs" />
@@ -97,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\AmpSine\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

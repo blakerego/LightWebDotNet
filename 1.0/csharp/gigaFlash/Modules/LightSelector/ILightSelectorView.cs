@@ -21,6 +21,11 @@ namespace gigaFlash.Modules
         List<Object> SelectedItems { get; set; }
 
         /// <summary>
+        /// Gets the list of available lights in the view. 
+        /// </summary>
+        List<Object> Items { get; } 
+
+        /// <summary>
         /// Gets or sets the color to be sent to the light state. 
         /// </summary>
         Color Color { get; set; }

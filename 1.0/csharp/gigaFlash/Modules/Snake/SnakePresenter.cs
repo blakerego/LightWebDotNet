@@ -23,8 +23,8 @@ namespace gigaFlash.Modules
             : base(pState)
         {
             mView = pView; 
-			mView.RunSnakeFired += new gigaFlash.Delegates.VoidDelegate(OnSnakeFired);
-            mView.StopSnakeFired += new VoidDelegate(OnSnakeStopped);
+			mView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnSnakeFired);
+            mView.StopFired += new VoidDelegate(OnSnakeStopped);
             mSnakeWorker = new BackgroundWorker();
             mSnakeWorker.WorkerSupportsCancellation = true;
             mSnakeWorker.DoWork += new DoWorkEventHandler(StartSnakeThread);
