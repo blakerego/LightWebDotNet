@@ -45,6 +45,7 @@ namespace gigaFlash.Modules
         protected virtual void OnMainThreadStopped(object sender, RunWorkerCompletedEventArgs e)
         {
             mThreadedView.RunButtonEnabled = true;
+            mLightState.Clear(); 
         }
 
         protected virtual void OnDisposing()
