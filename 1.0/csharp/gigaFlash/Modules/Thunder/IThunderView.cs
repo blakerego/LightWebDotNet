@@ -5,11 +5,7 @@ using System.Text;
 
 namespace gigaFlash.Modules
 {
-    public enum ModuleOptions
+    public interface IThunderView : IThreadedView
     {
-        LightSelector, 
-        Snake, 
-        AmpSine,
-        Thunder
     }
 }

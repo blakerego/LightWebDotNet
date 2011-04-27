@@ -17,6 +17,7 @@ namespace gigaFlash.Mainform
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
             mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
+            mView.ThunderClicked += new gigaFlash.Delegates.VoidDelegate(OnThunderClicked);
         }
         #endregion 
 
@@ -34,6 +35,11 @@ namespace gigaFlash.Mainform
         protected virtual void OnAmpSineClicked()
         {
             GetPresenter<AmpSinePresenter, AmpSinePresFactory>().ShowUI(); 
+        }
+
+        protected virtual void OnThunderClicked()
+        {
+            GetPresenter<ThunderPresenter, ThunderPresenterFactory>().ShowUI();  
         }
         #endregion 
 

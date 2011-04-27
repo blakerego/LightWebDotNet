@@ -74,6 +74,10 @@
     <Compile Include="Modules\Snake\ISnakeView.cs" />
     <Compile Include="Modules\Snake\SnakePresenter.cs" />
     <Compile Include="Modules\Snake\SnakePresFactory.cs" />
+    <Compile Include="Modules\ThreadPresenterBase.cs" />
+    <Compile Include="Modules\Thunder\IThunderView.cs" />
+    <Compile Include="Modules\Thunder\ThunderPresenter.cs" />
+    <Compile Include="Modules\Thunder\ThunderPresenterFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mainform\MainformButtons\MainformButtonView.resx">
       <DependentUpon>MainformButtonView.cs</DependentUpon>

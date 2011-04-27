@@ -25,6 +25,12 @@ namespace gigaFlash.Mainform
         /// This is the event that is raised when amp sine is
         /// clicked
         /// </summary>
-        event VoidDelegate AmpSineClicked; 
+        event VoidDelegate AmpSineClicked;
+
+        /// <summary>
+        /// This is the event that is raised when the thunder button is 
+        /// clicked. 
+        /// </summary>
+        event VoidDelegate ThunderClicked;
     }
 }

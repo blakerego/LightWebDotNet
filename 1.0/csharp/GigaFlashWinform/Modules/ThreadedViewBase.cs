@@ -1,57 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using gigaFlash.Delegates;
 using gigaFlash.Modules;
+using gigaFlash.Delegates;
 
-namespace GigaFlashWinform
+namespace GigaFlashWinform.Modules
 {
-    public partial class SnakeView : BaseForm, ISnakeView
+    public partial class ThreadedViewBase : BaseForm, IThreadedView
     {
         #region Constructor
-        public SnakeView()
+        public ThreadedViewBase()
         {
             InitializeComponent();
         }
-        #endregion
+        #endregion 
 
-        #region Members / Properties
-        public event VoidDelegate StartFired;
-
-        public event VoidDelegate StopFired;
-
-        public new event VoidDelegate Disposing;
+        #region IThreadedView Members
 
         public bool RunButtonEnabled
         {
             get
             {
-                return mSnakeButton.Enabled;
+                return mRunButton.Enabled; 
             }
             set
             {
-                mSnakeButton.Enabled = value;
+                mRunButton.Enabled = value; 
             }
         }
+
+        public event VoidDelegate StartFired;
+
+        public event VoidDelegate StopFired;
+
+        public event VoidDelegate Disposing; 
+
         #endregion
 
         #region Handlers
-        private void HandleRunSnakeClicked(object sender, EventArgs e)
+        private void mRunButton_Click(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StartFired);
+            EventUtils.FireEvent(StartFired); 
         }
 
-        private void HandleStopSnakeClicked(object sender, EventArgs e)
+        private void mStopButton_Click(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StopFired);
+            EventUtils.FireEvent(StopFired); 
         }
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -65,6 +67,5 @@ namespace GigaFlashWinform
             base.Dispose(disposing);
         }
         #endregion
-
     }
 }

@@ -127,5 +127,11 @@ namespace GigaFlashWinform
         }
         #endregion
 
+
+        #region IModuleView Members
+
+        public new event VoidDelegate Disposing;
+
+        #endregion
     }
 }

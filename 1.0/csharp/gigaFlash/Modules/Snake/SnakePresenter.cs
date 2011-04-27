@@ -16,60 +16,27 @@ namespace gigaFlash.Modules
 	/// At the snake head, the color will be at full intensity. The next in line will be at half intensity. 
 	/// 
 	/// </summary>
-    public class SnakePresenter : LightModulePresenterBase
+    public class SnakePresenter : ThreadPresenterBase
     {
         #region Constructor 
         public SnakePresenter(ISnakeView pView, LightState pState)
             : base(pView, pState)
         {
             mView = pView; 
-			mView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnSnakeFired);
-            mView.StopFired += new VoidDelegate(OnSnakeStopped);
-            mSnakeWorker = new BackgroundWorker();
-            mSnakeWorker.WorkerSupportsCancellation = true;
-            mSnakeWorker.DoWork += new DoWorkEventHandler(StartSnakeThread);
-            mSnakeWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(SnakeFinished);
         }
-
         #endregion 
 
 		#region Handlers
-		protected virtual void OnSnakeFired() 
-		{
-            mContinueSnaking = true; 
-            mView.RunButtonEnabled = false; 
-            mSnakeWorker.RunWorkerAsync();
-		}
-
-        /// <summary>
-        /// On the user's command, we signal that this snake will this thread's last.
-        /// </summary>
-        protected void OnSnakeStopped()
-        {
-            mContinueSnaking = false;
-        }
-
-        /// <summary>
-        /// When the snake thread is finished, re-enable the snake button. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void SnakeFinished(object sender, RunWorkerCompletedEventArgs e)
-        {
-            mView.RunButtonEnabled = true;
-        }
-
-
         /// <summary>
         /// This is meant to be run on a background thread which starts when 
         /// the user clicks the snake button. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void StartSnakeThread(object sender, DoWorkEventArgs e)
+        protected override void RunContinuously(object sender, DoWorkEventArgs e)
         {
-            Color c = ColorUtils.GetRandomColor(); 
-            while (mContinueSnaking)
+            Color c = ColorUtils.GetRandomColor();
+            while (mContinueThread)
             {
                 int snakeParts = mLightState.Lights.Count;
                 foreach (Light turn in mLightState.Lights)
@@ -98,17 +65,10 @@ namespace gigaFlash.Modules
             }
             mLightState.Clear();
         }
-
-
 		#endregion
-		
-        #region Members / Properties
-        protected ISnakeView mView;
 
-        protected BackgroundWorker mSnakeWorker;
-
-        protected bool mContinueSnaking = true; 
-        #endregion
-
+        #region Members / Props
+        ISnakeView mView; 
+        #endregion 
     }
 }
