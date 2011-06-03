@@ -12,6 +12,7 @@ using System.Management;
 using System.IO;
 using NAudio.Wave;
 using System.Media;
+using Un4seen.Bass.AddOn.Wv;
 
 namespace GigaFlashWinform
 {
@@ -46,6 +47,11 @@ namespace GigaFlashWinform
 
         public event VoidDelegate ThunderClicked;
 
+        public event VoidDelegate MoveLightLeftEvent;
+
+        public event VoidDelegate MoveLightRightEvent;
+
+        public event VoidDelegate ClickEventFired;
         #endregion
 
         #region Handlers
@@ -67,7 +73,7 @@ namespace GigaFlashWinform
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReadAudio(); 
+            //BassWv.LoadMe("C:\\svn\\batcave\\abslabs\\wav\\Dura.wav");
         }
 
         private void mThunderButton_Click(object sender, EventArgs e)
@@ -115,6 +121,67 @@ namespace GigaFlashWinform
             }
              */
         }
+
+        protected virtual void MainFormView_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            {
+                int scrollDiff = e.NewValue - e.OldValue;
+                if (scrollDiff > 0)
+                {
+                    EventUtils.FireEvent(MoveLightRightEvent);
+                }
+                else
+                {
+                    EventUtils.FireEvent(MoveLightLeftEvent); 
+                }
+            }
+        }
+
+        private void MainFormView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                EventUtils.FireEvent(MoveLightLeftEvent); 
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                EventUtils.FireEvent(MoveLightRightEvent); 
+            }
+
+        }
+
+        void MainFormView_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                EventUtils.FireEvent(MoveLightLeftEvent);
+            }
+            else if (e.Delta < 0)
+            {
+                EventUtils.FireEvent(MoveLightRightEvent); 
+            }
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            EventUtils.FireEvent(ClickEventFired);
+        }
+
+
+        private void MainFormView_Load(object sender, EventArgs e)
+        {
+            this.BringToFront();
+            this.Focus();
+            this.KeyPreview = true;
+            //this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MainFormView_Scroll);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormView_KeyDown);
+            this.Click += new EventHandler(textBox1_Click);
+            this.tableLayoutPanel1.Click += new EventHandler(textBox1_Click);
+            this.MouseWheel += new MouseEventHandler(MainFormView_MouseWheel);
+        }
+
 
 
     }

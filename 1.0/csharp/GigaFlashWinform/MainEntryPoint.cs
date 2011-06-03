@@ -22,7 +22,7 @@ namespace GigaFlashWinform
 
             LoadModules(); 
 
-            LightState state = new LightState(4); 
+            LightState state = new LightState(10); 
             MainFormView view = new MainFormView();
             MainFormPresenter pres = new MainFormPresenter(view, state);
             Application.Run(view);

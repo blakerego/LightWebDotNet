@@ -32,5 +32,11 @@ namespace gigaFlash.Mainform
         /// clicked. 
         /// </summary>
         event VoidDelegate ThunderClicked;
+
+        event VoidDelegate MoveLightLeftEvent;
+
+        event VoidDelegate MoveLightRightEvent;
+
+        event VoidDelegate ClickEventFired; 
     }
 }

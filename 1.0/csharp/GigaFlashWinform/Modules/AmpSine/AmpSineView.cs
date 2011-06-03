@@ -68,7 +68,6 @@ namespace GigaFlashWinform.Modules
             EventUtils.FireEvent(TwinkleFired); 
         }
         #endregion 
-
     
         #region IModuleView Members
 

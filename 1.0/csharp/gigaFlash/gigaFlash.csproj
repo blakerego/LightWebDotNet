@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorUtils.cs" />
+    <Compile Include="ConfigObjects\ColorConfig.cs" />
     <Compile Include="Delegates\Delegates.cs" />
     <Compile Include="Mainform\IMainformView.cs" />
     <Compile Include="Mainform\MainformButtons\MainformButtonView.cs">
@@ -60,6 +61,8 @@
     <Compile Include="Modules\AmpSine\AmpSinePresenter.cs" />
     <Compile Include="Modules\AmpSine\AmpSinePresFactory.cs" />
     <Compile Include="Modules\AmpSine\IAmpSineView.cs" />
+    <Compile Include="Modules\ColorSaver\ColorSaverPresenter.cs" />
+    <Compile Include="Modules\ColorSaver\IColorSaverView.cs" />
     <Compile Include="Modules\ILightModuleFactoryBase.cs" />
     <Compile Include="Modules\IThraededView.cs" />
     <Compile Include="Modules\IViewFactory.cs" />

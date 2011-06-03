@@ -13,7 +13,7 @@ namespace gigaFlash
     {
         #region Constructors 
         public LightState()
-            : this(4) { }
+            : this(10) { }
 
         public LightState(int pNumberOfLights)
             : this(pNumberOfLights, new Connection()) { }

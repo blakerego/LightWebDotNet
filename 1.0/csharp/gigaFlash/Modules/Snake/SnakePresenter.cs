@@ -22,7 +22,8 @@ namespace gigaFlash.Modules
         public SnakePresenter(ISnakeView pView, LightState pState)
             : base(pView, pState)
         {
-            mView = pView; 
+            mView = pView;
+            mLightState = new LightState(9); 
         }
         #endregion 
 
@@ -60,7 +61,7 @@ namespace gigaFlash.Modules
                     }
 
                     mLightState.Update();
-                    System.Threading.Thread.Sleep(100);
+                    System.Threading.Thread.Sleep(200);
                 }
             }
             mLightState.Clear();
