@@ -37,6 +37,8 @@ namespace gigaFlash.Mainform
 
         event VoidDelegate MoveLightRightEvent;
 
-        event VoidDelegate ClickEventFired; 
+        event VoidDelegate ClickEventFired;
+
+        IRoom RoomView { get; }
     }
 }

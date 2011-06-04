@@ -154,6 +154,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="RoomUI\LightView.resx">
+      <DependentUpon>LightView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomUI\Room.resx">
+      <DependentUpon>Room.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -167,6 +175,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RoomUI\AllLightView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RoomUI\AllLightView.Designer.cs">
+      <DependentUpon>AllLightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomUI\ILightView.cs" />
+    <Compile Include="RoomUI\LightView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RoomUI\LightView.Designer.cs">
+      <DependentUpon>LightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomUI\Room.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RoomUI\Room.Designer.cs">
+      <DependentUpon>Room.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomUI\RoomViewFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="IasHelperLib">

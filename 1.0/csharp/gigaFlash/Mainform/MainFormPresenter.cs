@@ -5,6 +5,7 @@ using System.Text;
 using gigaFlash.Modules;
 using System.Windows.Forms;
 using System.Drawing;
+using gigaFlash.Room;
 
 namespace gigaFlash.Mainform
 {
@@ -14,11 +15,16 @@ namespace gigaFlash.Mainform
         public MainFormPresenter(IMainformView pView, LightState pState)
         {
             mView = pView;
-            mState = pState; 
+            mState = pState;
+
+            mRoomPresenter = new RoomPresenter(mView.RoomView, pState); 
+            mRoomPresenter.OnLightUpdate(0, ColorUtils.GetRandomColor()); 
+    
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
             mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
             mView.ThunderClicked += new gigaFlash.Delegates.VoidDelegate(OnThunderClicked);
+            
             mView.MoveLightLeftEvent += new gigaFlash.Delegates.VoidDelegate(OnLightLeftEvent);
             mView.MoveLightRightEvent += new gigaFlash.Delegates.VoidDelegate(OnLightRightEvent);
             mView.ClickEventFired += new gigaFlash.Delegates.VoidDelegate(OnClickEvent);
@@ -62,18 +68,24 @@ namespace gigaFlash.Mainform
 
         void OnLightRightEvent()
         {
-            if (mLightIntensity <= 99)
+            if (mLightIntensity <= 100 - mSensitivity)
             {
-                mLightIntensity++; 
+                for (int i = 0; i < mSensitivity; i++)
+                {
+                    mLightIntensity++;
+                }
             }
             UpdateRandomColor(); 
         }
 
         void OnLightLeftEvent()
         {
-            if (mLightIntensity >= 1)
+            if (mLightIntensity >= mSensitivity)
             {
-                mLightIntensity--; 
+                for (int i = 0; i < mSensitivity; i++)
+                {
+                    mLightIntensity--;
+                }
             }
             UpdateRandomColor(); 
         }
@@ -124,6 +136,10 @@ namespace gigaFlash.Mainform
         protected LightState mState;
 
         protected Color mCurrentRandomColor;
+
+        protected int mSensitivity = 5;
+
+        RoomPresenter mRoomPresenter; 
         #endregion
     }
 }

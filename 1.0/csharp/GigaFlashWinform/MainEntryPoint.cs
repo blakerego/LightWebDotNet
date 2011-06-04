@@ -20,7 +20,12 @@ namespace GigaFlashWinform
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoadModules(); 
+            // Loading specific UI Modules. 
+            ModuleCatalog.Instance.Add(ModuleOptions.LightSelector, new LightSelectorViewFactory());
+            ModuleCatalog.Instance.Add(ModuleOptions.Snake, new SnakeViewFactory());
+            ModuleCatalog.Instance.Add(ModuleOptions.AmpSine, new AmpSineViewFactory());
+            ModuleCatalog.Instance.Add(ModuleOptions.Thunder, new ThunderViewFactory());
+            ModuleCatalog.Instance.Add(ModuleOptions.Room, new RoomViewFactory()); 
 
             LightState state = new LightState(10); 
             MainFormView view = new MainFormView();
@@ -29,12 +34,5 @@ namespace GigaFlashWinform
 			pres.GetType(); 
         }
 
-        private static void LoadModules()
-        {
-            ModuleCatalog.Instance.Add(ModuleOptions.LightSelector, new LightSelectorViewFactory());
-            ModuleCatalog.Instance.Add(ModuleOptions.Snake, new SnakeViewFactory());
-            ModuleCatalog.Instance.Add(ModuleOptions.AmpSine, new AmpSineViewFactory());
-            ModuleCatalog.Instance.Add(ModuleOptions.Thunder, new ThunderViewFactory()); 
-        }
     }
 }

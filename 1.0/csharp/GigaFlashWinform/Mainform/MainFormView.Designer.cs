@@ -28,34 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mLightSelectorButton = new System.Windows.Forms.Button();
             this.mSnakeButton = new System.Windows.Forms.Button();
             this.mAmpSineButton = new System.Windows.Forms.Button();
             this.mThunderButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mFlowLayoutPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.room1 = new GigaFlashWinform.RoomUI.Room();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mFlowLayoutPanel
-            // 
-            this.mFlowLayoutPanel.Controls.Add(this.mLightSelectorButton);
-            this.mFlowLayoutPanel.Controls.Add(this.mSnakeButton);
-            this.mFlowLayoutPanel.Controls.Add(this.mAmpSineButton);
-            this.mFlowLayoutPanel.Controls.Add(this.mThunderButton);
-            this.mFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.mFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.mFlowLayoutPanel.Name = "mFlowLayoutPanel";
-            this.mFlowLayoutPanel.Size = new System.Drawing.Size(153, 352);
-            this.mFlowLayoutPanel.TabIndex = 0;
             // 
             // mLightSelectorButton
             // 
-            this.mLightSelectorButton.Location = new System.Drawing.Point(3, 3);
+            this.mLightSelectorButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLightSelectorButton.Location = new System.Drawing.Point(11, 12);
             this.mLightSelectorButton.Name = "mLightSelectorButton";
-            this.mLightSelectorButton.Size = new System.Drawing.Size(146, 23);
+            this.mLightSelectorButton.Size = new System.Drawing.Size(114, 23);
             this.mLightSelectorButton.TabIndex = 0;
             this.mLightSelectorButton.Text = "Light Selector";
             this.mLightSelectorButton.UseVisualStyleBackColor = true;
@@ -63,10 +53,11 @@
             // 
             // mSnakeButton
             // 
-            this.mSnakeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.mSnakeButton.Location = new System.Drawing.Point(3, 32);
+            this.mSnakeButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mSnakeButton.Location = new System.Drawing.Point(11, 41);
             this.mSnakeButton.Name = "mSnakeButton";
-            this.mSnakeButton.Size = new System.Drawing.Size(146, 23);
+            this.mSnakeButton.Size = new System.Drawing.Size(114, 23);
             this.mSnakeButton.TabIndex = 1;
             this.mSnakeButton.Text = "Snake";
             this.mSnakeButton.UseVisualStyleBackColor = true;
@@ -74,65 +65,85 @@
             // 
             // mAmpSineButton
             // 
-            this.mAmpSineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.mAmpSineButton.Location = new System.Drawing.Point(3, 61);
+            this.mAmpSineButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mAmpSineButton.Location = new System.Drawing.Point(11, 70);
             this.mAmpSineButton.Name = "mAmpSineButton";
-            this.mAmpSineButton.Size = new System.Drawing.Size(146, 23);
+            this.mAmpSineButton.Size = new System.Drawing.Size(114, 23);
             this.mAmpSineButton.TabIndex = 2;
-            this.mAmpSineButton.Text = "Amp Sine";
+            this.mAmpSineButton.Text = "Sine";
             this.mAmpSineButton.UseVisualStyleBackColor = true;
             this.mAmpSineButton.Click += new System.EventHandler(this.mAmpSineButton_Click);
             // 
             // mThunderButton
             // 
-            this.mThunderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.mThunderButton.Location = new System.Drawing.Point(3, 90);
+            this.mThunderButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mThunderButton.Location = new System.Drawing.Point(11, 99);
             this.mThunderButton.Name = "mThunderButton";
-            this.mThunderButton.Size = new System.Drawing.Size(146, 23);
+            this.mThunderButton.Size = new System.Drawing.Size(114, 23);
             this.mThunderButton.TabIndex = 2;
             this.mThunderButton.Text = "Thunder";
             this.mThunderButton.UseVisualStyleBackColor = true;
             this.mThunderButton.Click += new System.EventHandler(this.mThunderButton_Click);
             // 
-            // tableLayoutPanel1
+            // splitContainer1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.42857F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.57143F));
-            this.tableLayoutPanel1.Controls.Add(this.mFlowLayoutPanel, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(742, 358);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.mLightSelectorButton);
+            this.splitContainer1.Panel1.Controls.Add(this.mSnakeButton);
+            this.splitContainer1.Panel1.Controls.Add(this.mThunderButton);
+            this.splitContainer1.Panel1.Controls.Add(this.mAmpSineButton);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.room1);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.Size = new System.Drawing.Size(485, 295);
+            this.splitContainer1.SplitterDistance = 128;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // room1
+            // 
+            this.room1.BackColor = System.Drawing.Color.White;
+            this.room1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.room1.Location = new System.Drawing.Point(8, 8);
+            this.room1.Name = "room1";
+            this.room1.Size = new System.Drawing.Size(337, 280);
+            this.room1.TabIndex = 0;
             // 
             // MainFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 358);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(485, 295);
+            this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "MainFormView";
             this.Text = "HydrogenHaus";
             this.Load += new System.EventHandler(this.MainFormView_Load);
             this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MainFormView_Scroll);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormView_KeyDown);
-            this.mFlowLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel mFlowLayoutPanel;
         private System.Windows.Forms.Button mLightSelectorButton;
         private System.Windows.Forms.Button mSnakeButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button mAmpSineButton;
         private System.Windows.Forms.Button mThunderButton;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private GigaFlashWinform.RoomUI.Room room1;
     }
 }

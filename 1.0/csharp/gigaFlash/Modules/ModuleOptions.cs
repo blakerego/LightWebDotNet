@@ -10,6 +10,7 @@ namespace gigaFlash.Modules
         LightSelector, 
         Snake, 
         AmpSine,
-        Thunder
+        Thunder, 
+        Room
     }
 }

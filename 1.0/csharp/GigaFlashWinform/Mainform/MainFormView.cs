@@ -13,6 +13,7 @@ using System.IO;
 using NAudio.Wave;
 using System.Media;
 using Un4seen.Bass.AddOn.Wv;
+using gigaFlash;
 
 namespace GigaFlashWinform
 {
@@ -22,14 +23,11 @@ namespace GigaFlashWinform
         public MainFormView()
         {
             InitializeComponent();
+            room1.Focus(); 
         }
         #endregion 
 
         #region Members / Properties
-        public FlowLayoutPanel FlowLayoutPanel
-        {
-            get { return mFlowLayoutPanel; } 
-        }
 
         public Control Control
         {
@@ -37,6 +35,12 @@ namespace GigaFlashWinform
             {
                 return this;
             }
+        }
+
+        
+        public IRoom RoomView
+        {
+            get { return room1; } 
         }
 
         public event VoidDelegate LightSelectorClicked;
@@ -173,13 +177,13 @@ namespace GigaFlashWinform
         {
             this.BringToFront();
             this.Focus();
-            this.KeyPreview = true;
+            //this.KeyPreview = true;
             //this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MainFormView_Scroll);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormView_KeyDown);
-            this.Click += new EventHandler(textBox1_Click);
-            this.tableLayoutPanel1.Click += new EventHandler(textBox1_Click);
-            this.MouseWheel += new MouseEventHandler(MainFormView_MouseWheel);
+            //this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MainFormView_Scroll);
+            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormView_KeyDown);
+            //this.Click += new EventHandler(textBox1_Click);
+            //this.splitContainer1.Click += new EventHandler(textBox1_Click);
+            //this.MouseWheel += new MouseEventHandler(MainFormView_MouseWheel);
         }
 
 
