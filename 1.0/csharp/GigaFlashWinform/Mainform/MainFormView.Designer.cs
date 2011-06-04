@@ -33,7 +33,8 @@
             this.mAmpSineButton = new System.Windows.Forms.Button();
             this.mThunderButton = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.room1 = new GigaFlashWinform.RoomUI.Room();
+            this.mRoom = new GigaFlashWinform.RoomUI.Room();
+            this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.mLightSelectorButton);
             this.splitContainer1.Panel1.Controls.Add(this.mSnakeButton);
             this.splitContainer1.Panel1.Controls.Add(this.mThunderButton);
@@ -103,7 +105,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.room1);
+            this.splitContainer1.Panel2.Controls.Add(this.mRoom);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainer1.Size = new System.Drawing.Size(485, 295);
             this.splitContainer1.SplitterDistance = 128;
@@ -111,12 +113,24 @@
             // 
             // room1
             // 
-            this.room1.BackColor = System.Drawing.Color.White;
-            this.room1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.room1.Location = new System.Drawing.Point(8, 8);
-            this.room1.Name = "room1";
-            this.room1.Size = new System.Drawing.Size(337, 280);
-            this.room1.TabIndex = 0;
+            this.mRoom.BackColor = System.Drawing.Color.White;
+            this.mRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mRoom.Location = new System.Drawing.Point(8, 8);
+            this.mRoom.Name = "room1";
+            this.mRoom.Size = new System.Drawing.Size(337, 280);
+            this.mRoom.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(11, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Clear All";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.HandleClearClicked);
             // 
             // MainFormView
             // 
@@ -144,6 +158,7 @@
         private System.Windows.Forms.Button mAmpSineButton;
         private System.Windows.Forms.Button mThunderButton;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private GigaFlashWinform.RoomUI.Room room1;
+        private GigaFlashWinform.RoomUI.Room mRoom;
+        private System.Windows.Forms.Button button1;
     }
 }

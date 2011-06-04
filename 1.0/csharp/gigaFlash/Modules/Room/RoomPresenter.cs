@@ -19,7 +19,17 @@ namespace gigaFlash.Room
 
         public void OnLightUpdate(int val1, Color val2)
         {
-            mLightState.Lights[val1].Color = val2;
+            if (val1 >= 0)
+            {
+                mLightState.Lights[val1].Color = val2;
+            }
+            else
+            {
+                foreach (Light light in mLightState.Lights)
+                {
+                    light.Color = val2; 
+                }
+            }
             mLightState.Update(); 
         }
 

@@ -17,9 +17,7 @@ namespace gigaFlash.Mainform
             mView = pView;
             mState = pState;
 
-            mRoomPresenter = new RoomPresenter(mView.RoomView, pState); 
-            mRoomPresenter.OnLightUpdate(0, ColorUtils.GetRandomColor()); 
-    
+            mRoomPresenter = new RoomPresenter(mView.RoomView, pState);     
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
             mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
@@ -107,10 +105,7 @@ namespace gigaFlash.Mainform
         {
             mCurrentRandomColor = ColorUtils.GetRandomColor(); 
 
-            //Get Max val
-
             //Scale up color to brightest ratio.
-
             foreach(Light light in mState.Lights) 
             {
                 light.Color = mCurrentRandomColor; 
@@ -139,7 +134,7 @@ namespace gigaFlash.Mainform
 
         protected int mSensitivity = 5;
 
-        RoomPresenter mRoomPresenter; 
+        protected RoomPresenter mRoomPresenter; 
         #endregion
     }
 }

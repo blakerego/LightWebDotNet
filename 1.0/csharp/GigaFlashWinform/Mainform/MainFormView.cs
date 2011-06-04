@@ -23,7 +23,7 @@ namespace GigaFlashWinform
         public MainFormView()
         {
             InitializeComponent();
-            room1.Focus(); 
+            mRoom.Focus(); 
         }
         #endregion 
 
@@ -40,7 +40,7 @@ namespace GigaFlashWinform
         
         public IRoom RoomView
         {
-            get { return room1; } 
+            get { return mRoom; } 
         }
 
         public event VoidDelegate LightSelectorClicked;
@@ -85,46 +85,6 @@ namespace GigaFlashWinform
             EventUtils.FireEvent(ThunderClicked); 
         }
 
-        private void WhatIsAcmDriver()
-        {
-            StringBuilder s = new StringBuilder();
-            ManagementObjectSearcher mo = new ManagementObjectSearcher("select * from Win32_SoundDevice");
-
-            foreach (ManagementObject soundDevice in mo.Get())
-            {
-                s.Append(soundDevice.GetPropertyValue("DeviceId") + "\n\n\n");
-                s.Append(soundDevice.GetPropertyValue("Manufacturer"));
-                // etc                       
-            } MessageBox.Show(s.ToString());
-        }
-
-        private void ReadAudio()
-        {
-            SoundPlayer simpleSound = new SoundPlayer("C:\\svn\\batcave\\abslabs\\wav\\Dura.wav");
-
-            simpleSound.Play();
-            //Stream s =  simpleSound.Stream;
-
-            /*
-            using (var ms = File.OpenRead("C:\\svn\\batcave\\abslabs\\wav\\Dura.wav"))
-            {
-                using (var rdr = new WaveFileReader(ms))
-                {
-                    int steps = 100;
-                    int stepSize = (int)rdr.Length / steps;
-
-                    byte[][] audData = new byte[steps][];
-
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        audData[i] = new byte[stepSize];
-                        rdr.Read(audData[i], 0, stepSize);
-                    }
-                }
-            }
-             */
-        }
 
         protected virtual void MainFormView_Scroll(object sender, ScrollEventArgs e)
         {
@@ -184,6 +144,11 @@ namespace GigaFlashWinform
             //this.Click += new EventHandler(textBox1_Click);
             //this.splitContainer1.Click += new EventHandler(textBox1_Click);
             //this.MouseWheel += new MouseEventHandler(MainFormView_MouseWheel);
+        }
+
+        private void HandleClearClicked(object sender, EventArgs e)
+        {
+            mRoom.UpdateRoom(Color.Black); 
         }
 
 

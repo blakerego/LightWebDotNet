@@ -9,6 +9,11 @@ namespace gigaFlash
 {
     public interface IRoom : IModuleView
     {
+        /// <summary>
+        /// Announces a color change to a specific light index. 
+        /// 
+        /// If int is less than 0, we will update all lights. 
+        /// </summary>
         event DualTypedDelegate<int, Color> LightUpdate;
     }
 }

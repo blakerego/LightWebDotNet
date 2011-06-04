@@ -13,26 +13,62 @@ namespace GigaFlashWinform.RoomUI
 {
     public partial class Room : UserControl, IRoom
     {
+        #region Constructor
         public Room()
         {
             InitializeComponent();
-            mLightViews.Add(lightView1);
-            mLightViews.Add(lightView2);
-            mLightViews.Add(lightView3);
-            mLightViews.Add(lightView4);
-            mLightViews.Add(lightView5);
-            mLightViews.Add(lightView6);
-            mLightViews.Add(lightView10); 
-            mLightViews.Add(lightView7);
-            mLightViews.Add(lightView8);
-            mLightViews.Add(lightView9);
+            AddLight(lightView1);
+            AddLight(lightView2);
+            AddLight(lightView3);
+            AddLight(lightView4);
+            AddLight(lightView5);
+            AddLight(lightView6);
+            AddLight(lightView10); 
+            AddLight(lightView7);
+            AddLight(lightView8);
+            AddLight(lightView9);
             lightView1.Selected = true;
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
-            this.Click += new EventHandler(Room_Click);
+            this.Click += new EventHandler(OnRoomClickEvent);
+        }
+        #endregion 
+
+        #region Public Methods
+        public void UpdateRoom(Color c)
+        {
+            foreach (LightView lv in mLightViews)
+            {
+                lv.Color = c; 
+            }
+
+            // -1 updates all lights. 
+            EventUtils.FireDualTypedEvent(LightUpdate, -1, c); 
+        }
+        #endregion 
+
+        #region Handlers / Helpers
+        protected void AddLight(LightView pView)
+        {
+            pView.DirectClickEvent += new TypedDelegate<LightView>(OnDirectLightClick);
+            mLightViews.Add(pView); 
         }
 
-        #region Handlers
-        void OnMouseWheel(object sender, MouseEventArgs e)
+        protected void OnDirectLightClick(LightView pSelectedLight)
+        {
+            foreach (LightView lv in mLightViews)
+            {
+                if (lv != pSelectedLight)
+                {
+                    lv.Selected = false; 
+                }
+            }
+            pSelectedLight.Selected = true;
+            mColorModeSelected = true;
+            InitializeSelectedLight(pSelectedLight); 
+
+        }
+
+        protected void OnMouseWheel(object sender, MouseEventArgs e)
         {
             if (mColorModeSelected)
             {
@@ -65,7 +101,7 @@ namespace GigaFlashWinform.RoomUI
             }
         }
 
-        void Room_Click(object sender, EventArgs e)
+        protected void OnRoomClickEvent(object sender, EventArgs e)
         {
             // Toggles the mode selection. 
             mColorModeSelected = !mColorModeSelected;
@@ -73,10 +109,18 @@ namespace GigaFlashWinform.RoomUI
             // Chooses random color if in color mode. 
             if (mColorModeSelected)
             {
-                Color curColor = ColorUtils.GetRandomColor(); 
-                mLightViews[mHoverIndex].Color = curColor;
-                EventUtils.FireDualTypedEvent(LightUpdate, mHoverIndex, curColor);  
+                InitializeSelectedLight(mLightViews[mHoverIndex]); 
             }
+        }
+
+        protected void InitializeSelectedLight(LightView pSelectedLight)
+        {
+            mHoverIndex = mLightViews.IndexOf(pSelectedLight); 
+            Color curColor = ColorUtils.GetRandomColor();
+            pSelectedLight.Color = curColor;
+            EventUtils.FireDualTypedEvent(LightUpdate,
+                mHoverIndex, 
+                curColor);  
         }
         #endregion
 
@@ -107,5 +151,22 @@ namespace GigaFlashWinform.RoomUI
             base.Dispose(disposing);
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ColorDialog d = new ColorDialog();
+            if (DialogResult.OK == d.ShowDialog())
+            {
+                Color color = d.Color; 
+                EventUtils.FireDualTypedEvent(LightUpdate, 
+                    -1, 
+                    color);
+                foreach (LightView lv in mLightViews)
+                {
+                    lv.LightIntensity = 100; 
+                    lv.Color = color;
+                }
+            }
+        }
     }
 }

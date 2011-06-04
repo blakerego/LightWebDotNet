@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using gigaFlash;
+using gigaFlash.Delegates;
 
 namespace GigaFlashWinform.RoomUI
 {
@@ -42,6 +43,11 @@ namespace GigaFlashWinform.RoomUI
                 }
                 this.BackColor = Color; 
             }
+        }
+
+        protected void HandleDirectButtonClick(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(DirectClickEvent, this); 
         }
         #endregion 
 
@@ -110,8 +116,11 @@ namespace GigaFlashWinform.RoomUI
         }
 
         protected int mSensitivity = 3;
+
+        /// <summary>
+        /// Occurs when a user clicks on a light directly. 
+        /// </summary>
+        public event TypedDelegate<LightView> DirectClickEvent; 
         #endregion
-
-
     }
 }
