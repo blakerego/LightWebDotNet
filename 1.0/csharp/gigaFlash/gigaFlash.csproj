@@ -106,9 +106,9 @@
     </Compile>
     <Compile Include="LightCore\LightState.cs" />
     <Compile Include="Modules\IModuleView.cs" />
-    <Compile Include="Room\IRoom.cs" />
-    <Compile Include="Room\RoomPresenter.cs" />
-    <Compile Include="Room\RoomPresFactory.cs" />
+    <Compile Include="Modules\Room\IRoom.cs" />
+    <Compile Include="Modules\Room\RoomPresenter.cs" />
+    <Compile Include="Modules\Room\RoomPresFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

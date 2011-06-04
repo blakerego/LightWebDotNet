@@ -109,7 +109,7 @@ namespace GigaFlashWinform.RoomUI
             set { button1.Text = value; }
         }
 
-        protected int mSensitivity = 1;
+        protected int mSensitivity = 3;
         #endregion
 
 
