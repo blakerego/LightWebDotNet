@@ -13,8 +13,9 @@ namespace GigaFlashWinform.UserAccess
 {
     public partial class LoginScreen : BaseForm
     {
-        public LoginScreen()
+        public LoginScreen(MainFormView pParentMFV)
         {
+            mParentForm = pParentMFV; 
             InitializeComponent();
         }
 
@@ -25,12 +26,19 @@ namespace GigaFlashWinform.UserAccess
 
         private void HandleOKClicked(object sender, EventArgs e)
         {
-            MainFormView mainform = this.ParentForm as MainFormView;
+            MainFormView mainform = this.ParentMainForm;
             if (mainform != null)
             {
                 mainform.CurrentUser = textBox1.Text; 
             }
             this.Close(); 
+        }
+
+        protected MainFormView mParentForm;
+
+        public MainFormView ParentMainForm
+        {
+            get { return mParentForm; } 
         }
     }
 }

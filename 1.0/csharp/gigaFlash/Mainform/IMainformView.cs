@@ -33,12 +33,20 @@ namespace gigaFlash.Mainform
         /// </summary>
         event VoidDelegate ThunderClicked;
 
+        /// <summary>
+        /// Gets the view of the room.
+        /// </summary>
+        IRoom RoomView { get; }
+
+        /// <summary>
+        /// Gets or sets the current user. 
+        /// </summary>
+        string CurrentUser { get; set; } 
+
         event VoidDelegate MoveLightLeftEvent;
 
         event VoidDelegate MoveLightRightEvent;
 
         event VoidDelegate ClickEventFired;
-
-        IRoom RoomView { get; }
     }
 }

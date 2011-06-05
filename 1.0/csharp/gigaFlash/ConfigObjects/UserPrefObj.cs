@@ -13,8 +13,8 @@ namespace gigaFlash.ConfigObjects
 
         public string DateCreated;
 
-        public List<ColorConfig> Colors;
+        public List<ColorConfig> Colors = new List<ColorConfig>();
 
-        public List<RoomConfig> RoomConfigs; 
+        public List<RoomConfig> RoomConfigs = new List<RoomConfig>();
     }
 }

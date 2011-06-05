@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using gigaFlash;
 using gigaFlash.Delegates;
+using gigaFlash.ConfigObjects;
+using GigaFlashWinform.Modules.RoomUI;
 
 namespace GigaFlashWinform.RoomUI
 {
@@ -17,7 +19,15 @@ namespace GigaFlashWinform.RoomUI
         public LightView()
         {
             InitializeComponent();
+
+            ContextMenu menu = new ContextMenu();
+            MenuItem saveColorMenuItem = new MenuItem("Save Color");
+            saveColorMenuItem.Click += new EventHandler(SaveColorClicked);
+            menu.MenuItems.Add(saveColorMenuItem);
+            button1.ContextMenu = menu;
+
         }
+
         #endregion 
 
         #region Methods / Handlers 
@@ -42,6 +52,20 @@ namespace GigaFlashWinform.RoomUI
                     mLightIntensity--;
                 }
                 this.BackColor = Color; 
+            }
+        }
+
+        protected virtual void SaveColorClicked(object sender, EventArgs e)
+        {
+            ColorConfig colorconfig = new ColorConfig(); 
+            colorconfig.Color = mColor;
+            ColorSaveDialog cd = new ColorSaveDialog(); 
+            if (cd.ShowDialog(this.ParentForm) == DialogResult.OK)
+            {
+                colorconfig.Name = cd.ColorName; 
+                colorconfig.TotalUseCount = 1; 
+                colorconfig.LastUseDate = DateTime.Now.ToString();
+                EventUtils.FireTypedEvent(SaveFired, colorconfig); 
             }
         }
 
@@ -121,7 +145,9 @@ namespace GigaFlashWinform.RoomUI
         /// <summary>
         /// Occurs when a user clicks on a light directly. 
         /// </summary>
-        public event TypedDelegate<LightView> DirectClickEvent; 
+        public event TypedDelegate<LightView> DirectClickEvent;
+
+        public event TypedDelegate<ColorConfig> SaveFired; 
         #endregion
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using gigaFlash.Delegates;
+using gigaFlash.ConfigObjects;
 
 namespace gigaFlash
 {
@@ -20,5 +21,10 @@ namespace gigaFlash
         /// Meant to be run after events are hooked up from the presenter.
         /// </summary>
         void PostInitializiation();
+
+        /// <summary>
+        /// Announces a color save event. 
+        /// </summary>
+        event TypedDelegate<ColorConfig> ColorSaveFired; 
     }
 }

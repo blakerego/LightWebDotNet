@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using gigaFlash;
 using gigaFlash.Delegates;
+using gigaFlash.ConfigObjects;
 
 namespace GigaFlashWinform.RoomUI
 {
@@ -70,7 +71,13 @@ namespace GigaFlashWinform.RoomUI
         protected void AddLight(LightView pView)
         {
             pView.DirectClickEvent += new TypedDelegate<LightView>(OnDirectLightClick);
+            pView.SaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(HandleColorSaveFired);
             mLightViews.Add(pView); 
+        }
+
+        protected virtual void HandleColorSaveFired(ColorConfig value)
+        {
+            EventUtils.FireTypedEvent(ColorSaveFired, value); 
         }
 
         protected void OnDirectLightClick(LightView pSelectedLight)
@@ -183,6 +190,8 @@ namespace GigaFlashWinform.RoomUI
         protected bool mColorModeSelected = false;
 
         public new event VoidDelegate Disposing;
+
+        public event TypedDelegate<ColorConfig> ColorSaveFired; 
 
         public int RoomIntensity
         {

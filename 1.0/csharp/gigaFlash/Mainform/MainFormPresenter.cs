@@ -6,6 +6,9 @@ using gigaFlash.Modules;
 using System.Windows.Forms;
 using System.Drawing;
 using gigaFlash.Room;
+using gigaFlash.ConfigObjects;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace gigaFlash.Mainform
 {
@@ -17,7 +20,8 @@ namespace gigaFlash.Mainform
             mView = pView;
             mState = pState;
 
-            mRoomPresenter = new RoomPresenter(mView.RoomView, pState);     
+            mRoomPresenter = new RoomPresenter(mView.RoomView, pState);
+            mView.RoomView.ColorSaveFired += new gigaFlash.Delegates.TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
             mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
@@ -50,6 +54,24 @@ namespace gigaFlash.Mainform
         {
             GetPresenter<ThunderPresenter, ThunderPresenterFactory>().ShowUI();  
         }
+
+        protected void OnColorSaveFired(ColorConfig value)
+        {
+            UserPrefObj userprefobj = new UserPrefObj();
+            userprefobj.Username = mView.CurrentUser;
+            String now = DateTime.Now.ToString();
+            userprefobj.DateCreated = now;
+            userprefobj.DateLastModfied = now; 
+            DateTime dt = DateTime.Parse(userprefobj.DateCreated); 
+            userprefobj.Colors.Add(value); 
+
+
+            XmlSerializer serializer = new XmlSerializer(typeof(UserPrefObj));
+            TextWriter stream = new StreamWriter(ConfigPath + mView.CurrentUser + ".xml");
+            serializer.Serialize(stream, userprefobj);
+            stream.Close();
+        }
+
 
         protected int mLightIntensity = 100; 
         protected virtual void OnScrollEvent(int value)
@@ -134,7 +156,14 @@ namespace gigaFlash.Mainform
 
         protected int mSensitivity = 5;
 
-        protected RoomPresenter mRoomPresenter; 
+        protected RoomPresenter mRoomPresenter;
+
+        //need to figure out how to get a relative path. 
+        protected string mConfigPath = "C:/svn/configs";
+        protected string ConfigPath
+        {
+            get { return mConfigPath; } 
+        }
         #endregion
     }
 }

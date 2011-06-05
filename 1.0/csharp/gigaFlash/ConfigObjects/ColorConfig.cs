@@ -12,7 +12,7 @@ namespace gigaFlash.ConfigObjects
 
         public Color Color;
 
-        public string TotalUseCount;
+        public int TotalUseCount;
 
         public string LastUseDate; 
     }

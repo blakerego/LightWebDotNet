@@ -34,7 +34,7 @@ namespace GigaFlashWinform
             view.StartPosition = FormStartPosition.CenterScreen; 
             MainFormPresenter pres = new MainFormPresenter(view, state);
 
-            LoginScreen login = new LoginScreen();
+            LoginScreen login = new LoginScreen(view);
             login.StartPosition = FormStartPosition.CenterScreen; 
             login.ShowDialog(view);
 

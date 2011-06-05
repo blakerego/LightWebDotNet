@@ -14,6 +14,7 @@ using NAudio.Wave;
 using System.Media;
 using Un4seen.Bass.AddOn.Wv;
 using gigaFlash;
+using GigaFlashWinform.UserAccess;
 
 namespace GigaFlashWinform
 {
@@ -32,16 +33,25 @@ namespace GigaFlashWinform
         {
             mMenuStrip = new MenuStrip();
             this.Controls.Add(mMenuStrip);
-            mFileMenuItem = new ToolStripMenuItem("File");
+
+            #region File Menu
+            mFileMenuItem = new ToolStripMenuItem("&File");
             mMenuStrip.Items.Add(mFileMenuItem);
-            
+
+            ToolStripMenuItem changeLogin = new ToolStripMenuItem("Change username / login");
+            changeLogin.Click += new EventHandler(ChangeLoginClicked);
+            mFileMenuItem.DropDownItems.Add(changeLogin); 
+
             //Create the New menu Items and add it to the FileMenu above. We are also going to create the click event for the item.
-            ToolStripMenuItem SaveMenuItem = new ToolStripMenuItem("Save");
+            mSaveMenuItem = new ToolStripMenuItem("Save Room");
             //SaveMenuItem.Click += new EventHandler(New_Click);
-            mFileMenuItem.DropDownItems.Add(SaveMenuItem);
+            if (String.IsNullOrEmpty(mCurrentUser))
+                mSaveMenuItem.Enabled = false; 
+            mFileMenuItem.DropDownItems.Add(mSaveMenuItem);
+            #endregion 
 
             #region Insert Menu
-            ToolStripMenuItem InsertMenuItem = new ToolStripMenuItem("Run");
+            ToolStripMenuItem InsertMenuItem = new ToolStripMenuItem("&Run");
             mMenuStrip.Items.Add(InsertMenuItem);
 
             ToolStripMenuItem SnakeMenuItem = new ToolStripMenuItem("Snake");
@@ -57,11 +67,13 @@ namespace GigaFlashWinform
             InsertMenuItem.DropDownItems.Add(SineMenuItem);
             #endregion 
         }
+
         #endregion 
 
         #region Members / Properties
         protected MenuStrip mMenuStrip;
-        ToolStripMenuItem mFileMenuItem; 
+        ToolStripMenuItem mFileMenuItem;
+        ToolStripMenuItem mSaveMenuItem; 
 
         public Control Control
         {
@@ -81,7 +93,14 @@ namespace GigaFlashWinform
         public string CurrentUser
         {
             get { return mCurrentUser; }
-            set { mCurrentUser = value; } 
+            set 
+            { 
+                mCurrentUser = value;
+                if (mSaveMenuItem != null)
+                {
+                    mSaveMenuItem.Enabled = true; 
+                }
+            } 
         }
 
         public event VoidDelegate LightSelectorClicked;
@@ -125,6 +144,12 @@ namespace GigaFlashWinform
             EventUtils.FireEvent(ThunderClicked); 
         }
 
+        private void ChangeLoginClicked(object sender, EventArgs e)
+        {
+            LoginScreen ls = new LoginScreen(this);
+            ls.StartPosition = FormStartPosition.CenterParent;
+            ls.ShowDialog(this); 
+        }
 
         protected virtual void MainFormView_Scroll(object sender, ScrollEventArgs e)
         {

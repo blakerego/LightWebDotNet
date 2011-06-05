@@ -7,5 +7,7 @@ namespace gigaFlash.ConfigObjects
 {
     public class RoomConfig
     {
+        public string Name; 
+
     }
 }
