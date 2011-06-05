@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="ColorUtils.cs" />
     <Compile Include="ConfigObjects\ColorConfig.cs" />
+    <Compile Include="ConfigObjects\RoomConfig.cs" />
+    <Compile Include="ConfigObjects\UserPrefObj.cs" />
     <Compile Include="Delegates\Delegates.cs" />
     <Compile Include="Mainform\IMainformView.cs" />
     <Compile Include="Mainform\MainformButtons\MainformButtonView.cs">

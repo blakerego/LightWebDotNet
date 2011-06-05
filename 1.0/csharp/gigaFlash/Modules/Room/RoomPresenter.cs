@@ -15,6 +15,7 @@ namespace gigaFlash.Room
         {
             mView = pView; 
             mView.LightUpdate += new DualTypedDelegate<int, Color>(OnLightUpdate);
+            mView.PostInitializiation(); 
         }
 
         public void OnLightUpdate(int val1, Color val2)

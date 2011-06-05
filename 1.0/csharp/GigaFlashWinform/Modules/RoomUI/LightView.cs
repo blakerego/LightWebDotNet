@@ -94,18 +94,19 @@ namespace GigaFlashWinform.RoomUI
             }
             set
             {
-                this.BackColor = value; 
                 mColor = value; 
+                this.BackColor = Color; 
             }
         }
 
         protected int mLightIntensity = 100;
-        public int LightIntensity
+        public int Intensity
         {
             get { return mLightIntensity; }
             set 
             { 
-                mLightIntensity = value; 
+                mLightIntensity = value;
+                this.BackColor = Color;
             }
         }
 

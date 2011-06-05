@@ -23,11 +23,28 @@ namespace GigaFlashWinform
         public MainFormView()
         {
             InitializeComponent();
-            mRoom.Focus(); 
+            InitializeMenus();
+        }
+        #endregion 
+
+        #region Setup 
+        protected void InitializeMenus()
+        {
+            mMenuStrip = new MenuStrip();
+            this.Controls.Add(mMenuStrip);
+            mFileMenuItem = new ToolStripMenuItem("File");
+            mMenuStrip.Items.Add(mFileMenuItem);
+            
+            //Create the New menu Items and add it to the FileMenu above. We are also going to create the click event for the item.
+            ToolStripMenuItem SaveMenuItem = new ToolStripMenuItem("Save");
+            //SaveMenuItem.Click += new EventHandler(New_Click);
+            mFileMenuItem.DropDownItems.Add(SaveMenuItem);
         }
         #endregion 
 
         #region Members / Properties
+        protected MenuStrip mMenuStrip;
+        ToolStripMenuItem mFileMenuItem; 
 
         public Control Control
         {
@@ -41,6 +58,13 @@ namespace GigaFlashWinform
         public IRoom RoomView
         {
             get { return mRoom; } 
+        }
+
+        protected string mCurrentUser;
+        public string CurrentUser
+        {
+            get { return mCurrentUser; }
+            set { mCurrentUser = value; } 
         }
 
         public event VoidDelegate LightSelectorClicked;
@@ -63,7 +87,6 @@ namespace GigaFlashWinform
         {
             EventUtils.FireEvent(LightSelectorClicked);
         }
-        #endregion 
 
         private void HandleSnakeModuleClicked(object sender, EventArgs e)
         {
@@ -148,10 +171,8 @@ namespace GigaFlashWinform
 
         private void HandleClearClicked(object sender, EventArgs e)
         {
-            mRoom.UpdateRoom(Color.Black); 
+            mRoom.UpdateRoom(Color.Black);
         }
-
-
-
+        #endregion
     }
 }

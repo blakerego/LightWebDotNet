@@ -15,5 +15,10 @@ namespace gigaFlash
         /// If int is less than 0, we will update all lights. 
         /// </summary>
         event DualTypedDelegate<int, Color> LightUpdate;
+
+        /// <summary>
+        /// Meant to be run after events are hooked up from the presenter.
+        /// </summary>
+        void PostInitializiation();
     }
 }

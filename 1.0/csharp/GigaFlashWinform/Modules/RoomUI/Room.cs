@@ -27,22 +27,42 @@ namespace GigaFlashWinform.RoomUI
             AddLight(lightView7);
             AddLight(lightView8);
             AddLight(lightView9);
-            lightView1.Selected = true;
+
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
             this.Click += new EventHandler(OnRoomClickEvent);
+        }
+
+        /// <summary>
+        /// Meant to be run after events are hooked up from the presenter.
+        /// </summary>
+        public void PostInitializiation()
+        {
+            UpdateRoom(ColorUtils.GetRandomColor(),
+                RoomIntensity); 
         }
         #endregion 
 
         #region Public Methods
         public void UpdateRoom(Color c)
         {
+            UpdateRoom(c, 100); 
+        }
+
+        public void UpdateRoom(Color c, int intensity)
+        {
             foreach (LightView lv in mLightViews)
             {
-                lv.Color = c; 
+                lv.Color = c;
+                lv.Intensity = intensity; 
             }
 
+            Color adjustedColor = Color.FromArgb(
+                    c.R * intensity / 100,
+                    c.G * intensity / 100,
+                    c.B * intensity / 100); 
+
             // -1 updates all lights. 
-            EventUtils.FireDualTypedEvent(LightUpdate, -1, c); 
+            EventUtils.FireDualTypedEvent(LightUpdate, -1, adjustedColor); 
         }
         #endregion 
 
@@ -122,6 +142,35 @@ namespace GigaFlashWinform.RoomUI
                 mHoverIndex, 
                 curColor);  
         }
+
+        private void HandleSetRoomColorClicked(object sender, EventArgs e)
+        {
+            ColorDialog d = new ColorDialog();
+            if (DialogResult.OK == d.ShowDialog())
+            {
+                Color color = d.Color;
+                EventUtils.FireDualTypedEvent(LightUpdate,
+                    -1,
+                    color);
+                foreach (LightView lv in mLightViews)
+                {
+                    lv.Intensity = 100;
+                    lv.Color = color;
+                }
+            }
+        }
+
+        private void HandleBrightnessValueChanged(object sender, EventArgs e)
+        {
+            foreach (LightView lv in mLightViews)
+            {
+                lv.Intensity = RoomIntensity;
+                EventUtils.FireDualTypedEvent(LightUpdate, 
+                    mLightViews.IndexOf(lv), 
+                    lv.Color); 
+            }
+        }
+
         #endregion
 
         #region Members / Properties
@@ -134,6 +183,11 @@ namespace GigaFlashWinform.RoomUI
         protected bool mColorModeSelected = false;
 
         public new event VoidDelegate Disposing;
+
+        public int RoomIntensity
+        {
+            get { return mIntensityBar.Value * 10; }
+        }
         #endregion
 
         #region Dispose
@@ -143,6 +197,7 @@ namespace GigaFlashWinform.RoomUI
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            EventUtils.FireDualTypedEvent(LightUpdate, -1, Color.Black); 
             EventUtils.FireEvent(Disposing); 
             if (disposing && (components != null))
             {
@@ -152,21 +207,6 @@ namespace GigaFlashWinform.RoomUI
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ColorDialog d = new ColorDialog();
-            if (DialogResult.OK == d.ShowDialog())
-            {
-                Color color = d.Color; 
-                EventUtils.FireDualTypedEvent(LightUpdate, 
-                    -1, 
-                    color);
-                foreach (LightView lv in mLightViews)
-                {
-                    lv.LightIntensity = 100; 
-                    lv.Color = color;
-                }
-            }
-        }
+
     }
 }

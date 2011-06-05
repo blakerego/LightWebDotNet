@@ -33,8 +33,8 @@
             this.mAmpSineButton = new System.Windows.Forms.Button();
             this.mThunderButton = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.mRoom = new GigaFlashWinform.RoomUI.Room();
             this.button1 = new System.Windows.Forms.Button();
+            this.mRoom = new GigaFlashWinform.RoomUI.Room();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -107,18 +107,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.mRoom);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer1.Size = new System.Drawing.Size(485, 295);
+            this.splitContainer1.Size = new System.Drawing.Size(485, 320);
             this.splitContainer1.SplitterDistance = 128;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // room1
-            // 
-            this.mRoom.BackColor = System.Drawing.Color.White;
-            this.mRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mRoom.Location = new System.Drawing.Point(8, 8);
-            this.mRoom.Name = "room1";
-            this.mRoom.Size = new System.Drawing.Size(337, 280);
-            this.mRoom.TabIndex = 0;
             // 
             // button1
             // 
@@ -132,11 +123,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.HandleClearClicked);
             // 
+            // mRoom
+            // 
+            this.mRoom.BackColor = System.Drawing.Color.White;
+            this.mRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mRoom.Location = new System.Drawing.Point(8, 8);
+            this.mRoom.Name = "mRoom";
+            this.mRoom.Size = new System.Drawing.Size(337, 280);
+            this.mRoom.TabIndex = 0;
+            // 
             // MainFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 295);
+            this.ClientSize = new System.Drawing.Size(485, 320);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "MainFormView";

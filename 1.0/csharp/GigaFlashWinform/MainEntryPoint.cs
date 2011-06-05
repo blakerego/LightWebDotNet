@@ -6,6 +6,7 @@ using gigaFlash.Mainform;
 using gigaFlash;
 using gigaFlash.Modules;
 using GigaFlashWinform.Modules;
+using GigaFlashWinform.UserAccess;
 
 namespace GigaFlashWinform
 {
@@ -27,11 +28,17 @@ namespace GigaFlashWinform
             ModuleCatalog.Instance.Add(ModuleOptions.Thunder, new ThunderViewFactory());
             ModuleCatalog.Instance.Add(ModuleOptions.Room, new RoomViewFactory()); 
 
-            LightState state = new LightState(10); 
+
+            LightState state = new LightState(10);
             MainFormView view = new MainFormView();
+            view.StartPosition = FormStartPosition.CenterScreen; 
             MainFormPresenter pres = new MainFormPresenter(view, state);
+
+            LoginScreen login = new LoginScreen();
+            login.StartPosition = FormStartPosition.CenterScreen; 
+            login.ShowDialog(view);
+
             Application.Run(view);
-			pres.GetType(); 
         }
 
     }
