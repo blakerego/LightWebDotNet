@@ -39,6 +39,23 @@ namespace GigaFlashWinform
             ToolStripMenuItem SaveMenuItem = new ToolStripMenuItem("Save");
             //SaveMenuItem.Click += new EventHandler(New_Click);
             mFileMenuItem.DropDownItems.Add(SaveMenuItem);
+
+            #region Insert Menu
+            ToolStripMenuItem InsertMenuItem = new ToolStripMenuItem("Run");
+            mMenuStrip.Items.Add(InsertMenuItem);
+
+            ToolStripMenuItem SnakeMenuItem = new ToolStripMenuItem("Snake");
+            SnakeMenuItem.Click += new EventHandler(HandleSnakeModuleClicked);
+            InsertMenuItem.DropDownItems.Add(SnakeMenuItem);
+            
+            ToolStripMenuItem LightSelectorMenuItem = new ToolStripMenuItem("Light Selector");
+            LightSelectorMenuItem.Click += new EventHandler(HandleLightSelectorClicked);
+            InsertMenuItem.DropDownItems.Add(LightSelectorMenuItem);
+
+            ToolStripMenuItem SineMenuItem = new ToolStripMenuItem("Sine");
+            SineMenuItem.Click += new EventHandler(mAmpSineButton_Click);
+            InsertMenuItem.DropDownItems.Add(SineMenuItem);
+            #endregion 
         }
         #endregion 
 
