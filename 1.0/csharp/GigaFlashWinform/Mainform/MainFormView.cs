@@ -15,6 +15,7 @@ using System.Media;
 using Un4seen.Bass.AddOn.Wv;
 using gigaFlash;
 using GigaFlashWinform.UserAccess;
+using gigaFlash.ConfigObjects;
 
 namespace GigaFlashWinform
 {
@@ -68,12 +69,19 @@ namespace GigaFlashWinform
             #endregion 
         }
 
+        public void LoadPreferences(UserPrefObj pPreferences)
+        {
+            mRoom.LoadPreferences(pPreferences);
+            EventUtils.FireTypedEvent(PreferencesLoaded, pPreferences); 
+        }
         #endregion 
 
         #region Members / Properties
         protected MenuStrip mMenuStrip;
         ToolStripMenuItem mFileMenuItem;
-        ToolStripMenuItem mSaveMenuItem; 
+        ToolStripMenuItem mSaveMenuItem;
+
+        public event TypedDelegate<UserPrefObj> PreferencesLoaded; 
 
         public Control Control
         {

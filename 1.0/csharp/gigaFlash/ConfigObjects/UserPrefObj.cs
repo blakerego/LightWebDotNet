@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace gigaFlash.ConfigObjects
 {
@@ -16,5 +17,7 @@ namespace gigaFlash.ConfigObjects
         public List<ColorConfig> Colors = new List<ColorConfig>();
 
         public List<RoomConfig> RoomConfigs = new List<RoomConfig>();
+
+        public static string ConfigPath = "C:/svn/configs/";
     }
 }

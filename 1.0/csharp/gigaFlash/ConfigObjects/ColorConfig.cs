@@ -8,9 +8,13 @@ namespace gigaFlash.ConfigObjects
 {
     public class ColorConfig
     {
-        public string Name; 
+        public string Name;
 
-        public Color Color;
+        public int Red;
+
+        public int Green;
+
+        public int Blue; 
 
         public int TotalUseCount;
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using gigaFlash.Delegates;
+using GigaFlashWinform.RoomUI;
 
 namespace GigaFlashWinform
 {
@@ -21,6 +23,11 @@ namespace GigaFlashWinform
         /// <summary>
         /// Gets or sets the light's name. 
         /// </summary>
-        String LabelName { get; set; } 
+        String LabelName { get; set; }
+
+        /// <summary>
+        /// Announces that the color has been set. 
+        /// </summary>
+        event TypedDelegate<ILightView> ColorSet;  
     }
 }

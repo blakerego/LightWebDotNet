@@ -71,8 +71,29 @@ namespace GigaFlashWinform.RoomUI
         protected void AddLight(LightView pView)
         {
             pView.DirectClickEvent += new TypedDelegate<LightView>(OnDirectLightClick);
-            pView.SaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(HandleColorSaveFired);
+            pView.SaveFired += 
+                new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(HandleColorSaveFired);
+            pView.ColorSet += new TypedDelegate<ILightView>(OnColorSet);
             mLightViews.Add(pView); 
+        }
+
+        void OnColorSet(ILightView value)
+        {
+
+            LightView lv = value as LightView;
+            EventUtils.FireDualTypedEvent(
+                LightUpdate,
+                mLightViews.IndexOf(lv),
+                lv.Color); 
+
+        }
+
+        public void LoadPreferences(UserPrefObj pPrefObj)
+        {
+            foreach (LightView lightView in mLightViews)
+            {
+                lightView.CustomColors = pPrefObj.Colors; 
+            }
         }
 
         protected virtual void HandleColorSaveFired(ColorConfig value)
@@ -215,7 +236,6 @@ namespace GigaFlashWinform.RoomUI
             base.Dispose(disposing);
         }
         #endregion
-
 
     }
 }

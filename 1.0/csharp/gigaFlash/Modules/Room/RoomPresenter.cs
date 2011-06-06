@@ -5,6 +5,7 @@ using System.Text;
 using gigaFlash.Delegates;
 using System.Drawing;
 using gigaFlash.Modules;
+using gigaFlash.ConfigObjects;
 
 namespace gigaFlash.Room
 {
@@ -15,9 +16,12 @@ namespace gigaFlash.Room
         {
             mView = pView; 
             mView.LightUpdate += new DualTypedDelegate<int, Color>(OnLightUpdate);
+            mView.ColorSaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
             mView.PostInitializiation(); 
         }
 
+
+        #region Public Methods
         public void OnLightUpdate(int val1, Color val2)
         {
             if (val1 >= 0)
@@ -34,7 +38,42 @@ namespace gigaFlash.Room
             mLightState.Update(); 
         }
 
+        public void LoadPreferences(UserPrefObj pUserPrefObj)
+        {
+            mPrefObj = pUserPrefObj;
+            mView.LoadPreferences(pUserPrefObj);
+        }
+        #endregion 
+
+        #region Handlers
+        protected void OnColorSaveFired(gigaFlash.ConfigObjects.ColorConfig value)
+        {
+            UserPrefObj userprefobj;
+            if (mPrefObj == null)
+            {
+                userprefobj = new UserPrefObj();
+                String now = DateTime.Now.ToString();
+                userprefobj.DateCreated = now;
+                userprefobj.DateLastModfied = now;
+                DateTime dt = DateTime.Parse(userprefobj.DateCreated);
+                userprefobj.Colors.Add(value);
+            }
+            else
+            {
+                mPrefObj.Colors.Add(value);
+                userprefobj = mPrefObj;
+            }
+
+            EventUtils.FireTypedEvent(RoomSaveFired, userprefobj);
+        }
+        #endregion 
+
+        #region Members / Properties
+        protected UserPrefObj mPrefObj; 
+
         protected IRoom mView;
 
+        public event TypedDelegate<UserPrefObj> RoomSaveFired;
+        #endregion 
     }
 }

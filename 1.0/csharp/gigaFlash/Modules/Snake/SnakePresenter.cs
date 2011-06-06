@@ -23,7 +23,7 @@ namespace gigaFlash.Modules
             : base(pView, pState)
         {
             mView = pView;
-            mLightState = new LightState(9); 
+            mLightState = pState; 
         }
         #endregion 
 

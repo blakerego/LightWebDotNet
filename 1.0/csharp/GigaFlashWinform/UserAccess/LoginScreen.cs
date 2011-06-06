@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using gigaFlash;
 using gigaFlash.Mainform;
+using System.IO;
+using gigaFlash.ConfigObjects;
 
 namespace GigaFlashWinform.UserAccess
 {
@@ -27,6 +29,37 @@ namespace GigaFlashWinform.UserAccess
         private void HandleOKClicked(object sender, EventArgs e)
         {
             MainFormView mainform = this.ParentMainForm;
+            string loadPath = "" ; 
+            if (!mCreateNewUserCheckbox.Checked)
+            {
+                
+                string[] paths = Directory.GetFiles(UserPrefObj.ConfigPath);
+                bool usernameFound = false;
+                
+                foreach (string path in paths)
+                {
+                    string nameWithExt = Path.GetFileName(path);
+                    string configName = nameWithExt.Remove(nameWithExt.Length - 4);
+                    if (configName == textBox1.Text)
+                    {
+                        usernameFound = true;
+                        loadPath = path;
+                    }
+                }
+                if (usernameFound)
+                {
+                    UserPrefObj prefObj = GrandConfigSerializer<UserPrefObj>.FromXML(
+                        loadPath, ConfigOrientation.fromDisk);
+                    if (prefObj != null) 
+                        mainform.LoadPreferences(prefObj); 
+                }
+                else
+                {
+                    
+                }
+
+            }
+
             if (mainform != null)
             {
                 mainform.CurrentUser = textBox1.Text; 

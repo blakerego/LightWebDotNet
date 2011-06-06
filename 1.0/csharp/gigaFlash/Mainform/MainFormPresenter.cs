@@ -21,7 +21,9 @@ namespace gigaFlash.Mainform
             mState = pState;
 
             mRoomPresenter = new RoomPresenter(mView.RoomView, pState);
-            mView.RoomView.ColorSaveFired += new gigaFlash.Delegates.TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
+            mRoomPresenter.RoomSaveFired += new gigaFlash.Delegates.TypedDelegate<UserPrefObj>(OnRoomSaveFired);
+
+            mView.PreferencesLoaded += new gigaFlash.Delegates.TypedDelegate<UserPrefObj>(LoadPreferences);
             mView.LightSelectorClicked += new gigaFlash.Delegates.VoidDelegate(OnLightSelectorClicked);
             mView.SnakeModuleClicked += new gigaFlash.Delegates.VoidDelegate(OnSnakeModuleClicked);
             mView.AmpSineClicked += new gigaFlash.Delegates.VoidDelegate(OnAmpSineClicked);
@@ -31,6 +33,7 @@ namespace gigaFlash.Mainform
             mView.MoveLightRightEvent += new gigaFlash.Delegates.VoidDelegate(OnLightRightEvent);
             mView.ClickEventFired += new gigaFlash.Delegates.VoidDelegate(OnClickEvent);
         }
+
 
         #endregion 
 
@@ -55,23 +58,15 @@ namespace gigaFlash.Mainform
             GetPresenter<ThunderPresenter, ThunderPresenterFactory>().ShowUI();  
         }
 
-        protected void OnColorSaveFired(ColorConfig value)
+        void OnRoomSaveFired(UserPrefObj userprefobj)
         {
-            UserPrefObj userprefobj = new UserPrefObj();
             userprefobj.Username = mView.CurrentUser;
-            String now = DateTime.Now.ToString();
-            userprefobj.DateCreated = now;
-            userprefobj.DateLastModfied = now; 
-            DateTime dt = DateTime.Parse(userprefobj.DateCreated); 
-            userprefobj.Colors.Add(value); 
-
-
             XmlSerializer serializer = new XmlSerializer(typeof(UserPrefObj));
             TextWriter stream = new StreamWriter(ConfigPath + mView.CurrentUser + ".xml");
             serializer.Serialize(stream, userprefobj);
             stream.Close();
-        }
 
+        }
 
         protected int mLightIntensity = 100; 
         protected virtual void OnScrollEvent(int value)
@@ -145,9 +140,17 @@ namespace gigaFlash.Mainform
             Factory factory = Activator.CreateInstance(typeof(Factory)) as Factory;
             return factory.Create(mState);
         }
+
+        public void LoadPreferences(UserPrefObj pUserPrefObj)
+        {
+            mPrefObj = pUserPrefObj;
+            mRoomPresenter.LoadPreferences(pUserPrefObj); 
+        }
         #endregion 
 
         #region Members / Properties
+        protected UserPrefObj mPrefObj; 
+
         protected IMainformView mView;
 
         protected LightState mState;
@@ -159,10 +162,9 @@ namespace gigaFlash.Mainform
         protected RoomPresenter mRoomPresenter;
 
         //need to figure out how to get a relative path. 
-        protected string mConfigPath = "C:/svn/configs";
         protected string ConfigPath
         {
-            get { return mConfigPath; } 
+            get { return UserPrefObj.ConfigPath; } 
         }
         #endregion
     }

@@ -19,13 +19,7 @@ namespace GigaFlashWinform.RoomUI
         public LightView()
         {
             InitializeComponent();
-
-            ContextMenu menu = new ContextMenu();
-            MenuItem saveColorMenuItem = new MenuItem("Save Color");
-            saveColorMenuItem.Click += new EventHandler(SaveColorClicked);
-            menu.MenuItems.Add(saveColorMenuItem);
-            button1.ContextMenu = menu;
-
+            InitializeContextMenu(); 
         }
 
         #endregion 
@@ -58,7 +52,9 @@ namespace GigaFlashWinform.RoomUI
         protected virtual void SaveColorClicked(object sender, EventArgs e)
         {
             ColorConfig colorconfig = new ColorConfig(); 
-            colorconfig.Color = mColor;
+            colorconfig.Red = mColor.R;
+            colorconfig.Green = mColor.G;
+            colorconfig.Blue = mColor.B; 
             ColorSaveDialog cd = new ColorSaveDialog(); 
             if (cd.ShowDialog(this.ParentForm) == DialogResult.OK)
             {
@@ -67,6 +63,19 @@ namespace GigaFlashWinform.RoomUI
                 colorconfig.LastUseDate = DateTime.Now.ToString();
                 EventUtils.FireTypedEvent(SaveFired, colorconfig); 
             }
+        }
+
+        protected void InitializeContextMenu()
+        {
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem saveColorMenuItem = new MenuItem("Save Color");
+            saveColorMenuItem.Click += new EventHandler(SaveColorClicked);
+            menu.MenuItems.Add(saveColorMenuItem);
+
+            menu.MenuItems.Add(mLoadColorMenuItem);
+
+            button1.ContextMenu = menu;
         }
 
         protected void HandleDirectButtonClick(object sender, EventArgs e)
@@ -119,7 +128,8 @@ namespace GigaFlashWinform.RoomUI
             set
             {
                 mColor = value; 
-                this.BackColor = Color; 
+                this.BackColor = Color;
+                EventUtils.FireTypedEvent(ColorSet, this); 
             }
         }
 
@@ -141,6 +151,41 @@ namespace GigaFlashWinform.RoomUI
         }
 
         protected int mSensitivity = 3;
+
+        public event TypedDelegate<ILightView> ColorSet; 
+
+        MenuItem mLoadColorMenuItem = new MenuItem("Load Color");
+
+        protected Dictionary<string, Color> mCustomColorDictionary = new Dictionary<string,Color>();
+
+        protected List<ColorConfig> mCustomColors = new List<ColorConfig>();
+        public List<ColorConfig> CustomColors
+        {
+            get { return mCustomColors; }
+            set 
+            { 
+                mCustomColors = value;
+                foreach(ColorConfig colorConfig in mCustomColors) 
+                {
+                    Color c = Color.FromArgb(colorConfig.Red,
+                        colorConfig.Green, colorConfig.Blue); 
+                    mCustomColorDictionary[colorConfig.Name] = c; 
+                    MenuItem colorItem = new MenuItem(colorConfig.Name);
+                    colorItem.Click += new EventHandler(colorItem_Click);
+                    mLoadColorMenuItem.MenuItems.Add(colorItem); 
+                }
+            } 
+        }
+
+        void colorItem_Click(object sender, EventArgs e)
+        {
+            MenuItem mi = sender as MenuItem;
+            Color = mCustomColorDictionary[mi.Text]; 
+        }
+
+        private void LightMenuClicked()
+        {
+        }
 
         /// <summary>
         /// Occurs when a user clicks on a light directly. 

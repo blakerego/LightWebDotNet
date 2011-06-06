@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using gigaFlash.Delegates;
 using System.Windows.Forms;
+using gigaFlash.ConfigObjects;
 
 namespace gigaFlash.Mainform
 {
@@ -41,7 +42,9 @@ namespace gigaFlash.Mainform
         /// <summary>
         /// Gets or sets the current user. 
         /// </summary>
-        string CurrentUser { get; set; } 
+        string CurrentUser { get; set; }
+
+        event TypedDelegate<UserPrefObj> PreferencesLoaded; 
 
         event VoidDelegate MoveLightLeftEvent;
 

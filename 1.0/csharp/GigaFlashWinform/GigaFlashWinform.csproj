@@ -164,7 +164,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\RoomUI\LightView.resx">
+    <EmbeddedResource Include="Modules\RoomUI\LightView\LightView.resx">
       <DependentUpon>LightView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -189,17 +189,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Modules\RoomUI\AllLightView.cs">
+    <Compile Include="Modules\RoomUI\LightView\AllLightView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\RoomUI\AllLightView.Designer.cs">
+    <Compile Include="Modules\RoomUI\LightView\AllLightView.Designer.cs">
       <DependentUpon>AllLightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\RoomUI\ILightView.cs" />
-    <Compile Include="Modules\RoomUI\LightView.cs">
+    <Compile Include="Modules\RoomUI\LightView\ILightView.cs" />
+    <Compile Include="Modules\RoomUI\LightView\LightView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\RoomUI\LightView.Designer.cs">
+    <Compile Include="Modules\RoomUI\LightView\LightView.Designer.cs">
       <DependentUpon>LightView.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\RoomUI\Room.cs">

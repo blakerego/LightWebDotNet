@@ -25,6 +25,13 @@ namespace gigaFlash
         /// <summary>
         /// Announces a color save event. 
         /// </summary>
-        event TypedDelegate<ColorConfig> ColorSaveFired; 
+        event TypedDelegate<ColorConfig> ColorSaveFired;
+
+        /// <summary>
+        /// Loads the preferences for the particular user. 
+        /// </summary>
+        /// <param name="pPrefObj"></param>
+        void LoadPreferences(UserPrefObj pPrefObj);
+
     }
 }
