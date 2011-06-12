@@ -46,6 +46,7 @@
             this.button1.Text = "##";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.HandleDirectButtonClick);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             // 
             // LightView
             // 

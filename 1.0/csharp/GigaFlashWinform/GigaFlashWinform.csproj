@@ -151,6 +151,10 @@
       <DependentUpon>ColorSaveDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\RoomUI\LightView\AllLightView.resx">
+      <DependentUpon>AllLightView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Snake\SnakeView.resx">
       <DependentUpon>SnakeView.cs</DependentUpon>
       <SubType>Designer</SubType>

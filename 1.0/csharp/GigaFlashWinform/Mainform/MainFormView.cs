@@ -223,6 +223,7 @@ namespace GigaFlashWinform
         {
             mRoom.UpdateRoom(Color.Black);
         }
+
         #endregion
     }
 }

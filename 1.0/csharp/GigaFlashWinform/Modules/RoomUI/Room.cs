@@ -74,7 +74,20 @@ namespace GigaFlashWinform.RoomUI
             pView.SaveFired += 
                 new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(HandleColorSaveFired);
             pView.ColorSet += new TypedDelegate<ILightView>(OnColorSet);
+            pView.CopyEventFired += new TypedDelegate<Color>(HandleCopyEvent);
+            pView.PasteEventFired += new TypedDelegate<LightView>(HandlePasteEvent);
             mLightViews.Add(pView); 
+        }
+
+
+        void HandleCopyEvent(Color value)
+        {
+            mCopiedColor = value; 
+        }
+
+        void HandlePasteEvent(LightView pLight)
+        {
+            mLightViews[mLightViews.IndexOf(pLight)].Color = mCopiedColor; 
         }
 
         void OnColorSet(ILightView value)
@@ -101,7 +114,7 @@ namespace GigaFlashWinform.RoomUI
             EventUtils.FireTypedEvent(ColorSaveFired, value); 
         }
 
-        protected void OnDirectLightClick(LightView pSelectedLight)
+        protected virtual void OnDirectLightClick(LightView pSelectedLight)
         {
             foreach (LightView lv in mLightViews)
             {
@@ -202,6 +215,8 @@ namespace GigaFlashWinform.RoomUI
         #endregion
 
         #region Members / Properties
+        protected Color mCopiedColor = Color.Black; 
+
         protected List<LightView> mLightViews = new List<LightView>();
 
         protected int mHoverIndex = 0;

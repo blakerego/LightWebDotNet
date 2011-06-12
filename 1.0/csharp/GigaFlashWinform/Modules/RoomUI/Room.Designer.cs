@@ -15,6 +15,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Room));
             this.mIntensityBar = new System.Windows.Forms.TrackBar();
             this.mBrightnessLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -28,6 +29,7 @@
             this.lightView3 = new GigaFlashWinform.RoomUI.LightView();
             this.lightView2 = new GigaFlashWinform.RoomUI.LightView();
             this.lightView1 = new GigaFlashWinform.RoomUI.LightView();
+            this.allLightView1 = new GigaFlashWinform.RoomUI.AllLightView();
             ((System.ComponentModel.ISupportInitialize)(this.mIntensityBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,8 +72,8 @@
             this.lightView10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView10.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView10.LabelName = "06";
             this.lightView10.Intensity = 100;
+            this.lightView10.LabelName = "06";
             this.lightView10.Location = new System.Drawing.Point(3, 171);
             this.lightView10.Name = "lightView10";
             this.lightView10.Padding = new System.Windows.Forms.Padding(5);
@@ -84,8 +86,8 @@
             this.lightView9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView9.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView9.LabelName = "09";
             this.lightView9.Intensity = 100;
+            this.lightView9.LabelName = "09";
             this.lightView9.Location = new System.Drawing.Point(3, 3);
             this.lightView9.Name = "lightView9";
             this.lightView9.Padding = new System.Windows.Forms.Padding(5);
@@ -98,8 +100,8 @@
             this.lightView8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView8.LabelName = "08";
             this.lightView8.Intensity = 100;
+            this.lightView8.LabelName = "08";
             this.lightView8.Location = new System.Drawing.Point(3, 59);
             this.lightView8.Name = "lightView8";
             this.lightView8.Padding = new System.Windows.Forms.Padding(5);
@@ -112,8 +114,8 @@
             this.lightView7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView7.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView7.LabelName = "07";
             this.lightView7.Intensity = 100;
+            this.lightView7.LabelName = "07";
             this.lightView7.Location = new System.Drawing.Point(3, 115);
             this.lightView7.Name = "lightView7";
             this.lightView7.Padding = new System.Windows.Forms.Padding(5);
@@ -126,8 +128,8 @@
             this.lightView6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView6.LabelName = "05";
             this.lightView6.Intensity = 100;
+            this.lightView6.LabelName = "05";
             this.lightView6.Location = new System.Drawing.Point(59, 227);
             this.lightView6.Name = "lightView6";
             this.lightView6.Padding = new System.Windows.Forms.Padding(5);
@@ -140,8 +142,8 @@
             this.lightView5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView5.LabelName = "04";
             this.lightView5.Intensity = 100;
+            this.lightView5.LabelName = "04";
             this.lightView5.Location = new System.Drawing.Point(115, 227);
             this.lightView5.Name = "lightView5";
             this.lightView5.Padding = new System.Windows.Forms.Padding(5);
@@ -154,8 +156,8 @@
             this.lightView4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView4.LabelName = "03";
             this.lightView4.Intensity = 100;
+            this.lightView4.LabelName = "03";
             this.lightView4.Location = new System.Drawing.Point(171, 227);
             this.lightView4.Name = "lightView4";
             this.lightView4.Padding = new System.Windows.Forms.Padding(5);
@@ -168,8 +170,8 @@
             this.lightView3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView3.LabelName = "02";
             this.lightView3.Intensity = 100;
+            this.lightView3.LabelName = "02";
             this.lightView3.Location = new System.Drawing.Point(227, 227);
             this.lightView3.Name = "lightView3";
             this.lightView3.Padding = new System.Windows.Forms.Padding(5);
@@ -182,8 +184,8 @@
             this.lightView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView2.LabelName = "01";
             this.lightView2.Intensity = 100;
+            this.lightView2.LabelName = "01";
             this.lightView2.Location = new System.Drawing.Point(283, 171);
             this.lightView2.Name = "lightView2";
             this.lightView2.Padding = new System.Windows.Forms.Padding(5);
@@ -196,14 +198,28 @@
             this.lightView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lightView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightView1.LabelName = "00";
             this.lightView1.Intensity = 100;
+            this.lightView1.LabelName = "00";
             this.lightView1.Location = new System.Drawing.Point(283, 115);
             this.lightView1.Name = "lightView1";
             this.lightView1.Padding = new System.Windows.Forms.Padding(5);
             this.lightView1.Selected = false;
             this.lightView1.Size = new System.Drawing.Size(50, 50);
             this.lightView1.TabIndex = 0;
+            // 
+            // allLightView1
+            // 
+            this.allLightView1.BackColor = System.Drawing.SystemColors.Control;
+            this.allLightView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.allLightView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.allLightView1.Intensity = 100;
+            this.allLightView1.LabelName = "##";
+            this.allLightView1.Location = new System.Drawing.Point(0, 0);
+            this.allLightView1.Name = "allLightView1";
+            this.allLightView1.Padding = new System.Windows.Forms.Padding(5);
+            this.allLightView1.Selected = false;
+            this.allLightView1.Size = new System.Drawing.Size(50, 50);
+            this.allLightView1.TabIndex = 0;
             // 
             // Room
             // 
@@ -247,6 +263,7 @@
         private System.Windows.Forms.TrackBar mIntensityBar;
         private System.Windows.Forms.Label mBrightnessLabel;
         private System.Windows.Forms.Button button1;
+        private AllLightView allLightView1;
 
 
 

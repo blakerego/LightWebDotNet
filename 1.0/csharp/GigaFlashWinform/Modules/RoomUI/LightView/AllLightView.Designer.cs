@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // AllLightView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.LabelName = "Room View";
+            this.Name = "AllLightView";
+            this.Size = new System.Drawing.Size(148, 41);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

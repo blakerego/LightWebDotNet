@@ -168,11 +168,15 @@ namespace GigaFlashWinform.RoomUI
                 foreach(ColorConfig colorConfig in mCustomColors) 
                 {
                     Color c = Color.FromArgb(colorConfig.Red,
-                        colorConfig.Green, colorConfig.Blue); 
-                    mCustomColorDictionary[colorConfig.Name] = c; 
-                    MenuItem colorItem = new MenuItem(colorConfig.Name);
-                    colorItem.Click += new EventHandler(colorItem_Click);
-                    mLoadColorMenuItem.MenuItems.Add(colorItem); 
+                        colorConfig.Green, colorConfig.Blue);
+                    if (!mCustomColorDictionary.ContainsKey(colorConfig.Name))
+                    {
+                        mCustomColorDictionary[colorConfig.Name] = c;
+                        MenuItem colorItem = new MenuItem(colorConfig.Name);
+                        colorItem.Click += new EventHandler(colorItem_Click);
+                        if (!mLoadColorMenuItem.MenuItems.Contains(colorItem))
+                            mLoadColorMenuItem.MenuItems.Add(colorItem);
+                    }
                 }
             } 
         }
@@ -192,7 +196,25 @@ namespace GigaFlashWinform.RoomUI
         /// </summary>
         public event TypedDelegate<LightView> DirectClickEvent;
 
-        public event TypedDelegate<ColorConfig> SaveFired; 
+        public event TypedDelegate<ColorConfig> SaveFired;
+
+        public event TypedDelegate<Color> CopyEventFired;
+
+        public event TypedDelegate<LightView> PasteEventFired; 
         #endregion
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+            {
+                EventUtils.FireTypedEvent(CopyEventFired, this.Color); 
+            }
+            else if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            {
+                EventUtils.FireTypedEvent(PasteEventFired, this); 
+            }
+            base.OnKeyDown(e);
+        }
+
     }
 }
