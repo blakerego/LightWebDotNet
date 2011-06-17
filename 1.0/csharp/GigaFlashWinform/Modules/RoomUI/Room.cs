@@ -76,6 +76,8 @@ namespace GigaFlashWinform.RoomUI
             pView.ColorSet += new TypedDelegate<ILightView>(OnColorSet);
             pView.CopyEventFired += new TypedDelegate<Color>(HandleCopyEvent);
             pView.PasteEventFired += new TypedDelegate<LightView>(HandlePasteEvent);
+            pView.DoubleClickEvent += new TypedDelegate<LightView>(HandleDoubleClickOnLight);
+            pView.CtrlClickEvent += new TypedDelegate<LightView>(HandleCtrlClickEvent);
             mLightViews.Add(pView); 
         }
 
@@ -87,7 +89,10 @@ namespace GigaFlashWinform.RoomUI
 
         void HandlePasteEvent(LightView pLight)
         {
-            mLightViews[mLightViews.IndexOf(pLight)].Color = mCopiedColor; 
+            foreach (LightView light in SelectedLights)
+            {
+                light.Color = mCopiedColor;
+            }
         }
 
         void OnColorSet(ILightView value)
@@ -114,19 +119,55 @@ namespace GigaFlashWinform.RoomUI
             EventUtils.FireTypedEvent(ColorSaveFired, value); 
         }
 
+        /// <summary>
+        /// Clear the previous light selections.
+        /// The light that has been clicked on is now selected.
+        /// </summary>
+        /// <param name="pSelectedLight"></param>
         protected virtual void OnDirectLightClick(LightView pSelectedLight)
+        {
+            SelectLight(pSelectedLight);
+            mColorModeSelected = true;
+        }
+
+        /// <summary>
+        /// Clear previous light selections.
+        /// The light that has been clicked on is now selected.
+        /// Change the light to a random color. 
+        /// </summary>
+        /// <param name="value"></param>
+        protected virtual void HandleDoubleClickOnLight(LightView pSelectedLight)
+        {
+            SelectLight(pSelectedLight);
+            mColorModeSelected = true;
+            InitializeSelectedLight(pSelectedLight); 
+        }
+
+        /// <summary>
+        /// Adds the current value to the selected list without modifying the 
+        /// existing selection
+        /// </summary>
+        /// <param name="value"></param>
+        void HandleCtrlClickEvent(LightView value)
+        {
+            value.Selected = true; 
+        }
+
+        /// <summary>
+        /// Clears previous light selections.
+        /// pLight will be set to selected. 
+        /// </summary>
+        /// <param name="pLight"></param>
+        protected void SelectLight(LightView pSelectedLight)
         {
             foreach (LightView lv in mLightViews)
             {
                 if (lv != pSelectedLight)
                 {
-                    lv.Selected = false; 
+                    lv.Selected = false;
                 }
             }
-            pSelectedLight.Selected = true;
-            mColorModeSelected = true;
-            InitializeSelectedLight(pSelectedLight); 
-
+            pSelectedLight.Selected = true; 
         }
 
         protected void OnMouseWheel(object sender, MouseEventArgs e)
@@ -233,6 +274,33 @@ namespace GigaFlashWinform.RoomUI
         {
             get { return mIntensityBar.Value * 10; }
         }
+
+        public List<LightView> SelectedLights
+        {
+            get
+            {
+                List<LightView> selectedLights = new List<LightView>();
+                foreach (LightView light in mLightViews)
+                {
+                    if (light.Selected == true)
+                        selectedLights.Add(light); 
+                }
+                return selectedLights; 
+            }
+            set
+            {
+                if (value != null)
+                {
+                    foreach (LightView light in mLightViews)
+                    {
+                        if (value.Contains(light))
+                            light.Selected = true;
+                        else
+                            light.Selected = false;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Dispose
@@ -251,6 +319,7 @@ namespace GigaFlashWinform.RoomUI
             base.Dispose(disposing);
         }
         #endregion
+
 
     }
 }

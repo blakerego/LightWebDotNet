@@ -19,9 +19,10 @@ namespace GigaFlashWinform.RoomUI
         public LightView()
         {
             InitializeComponent();
-            InitializeContextMenu(); 
+            InitializeContextMenu();
+            this.DoubleClick +=new EventHandler(HandleDoubleClickEvent);
+            this.button1.DoubleClick += new EventHandler(HandleDoubleClickEvent);
         }
-
         #endregion 
 
         #region Methods / Handlers 
@@ -69,18 +70,71 @@ namespace GigaFlashWinform.RoomUI
         {
             ContextMenu menu = new ContextMenu();
 
+            #region Save Color
             MenuItem saveColorMenuItem = new MenuItem("Save Color");
             saveColorMenuItem.Click += new EventHandler(SaveColorClicked);
             menu.MenuItems.Add(saveColorMenuItem);
+            #endregion 
 
+            #region Load
             menu.MenuItems.Add(mLoadColorMenuItem);
+            #endregion 
+
+            #region Copy 
+            MenuItem copyMenuItem = new MenuItem("Copy");
+            copyMenuItem.Click += new EventHandler(HandleCopyFromContextMenu);
+            menu.MenuItems.Add(copyMenuItem);
+            #endregion 
+
+            #region Paste
+            MenuItem pasteMenuItem = new MenuItem("Paste");
+            pasteMenuItem.Click += new EventHandler(HandlePasteFromContextMenu);
+            menu.MenuItems.Add(pasteMenuItem);
+            #endregion
 
             button1.ContextMenu = menu;
         }
 
+        private void HandlePasteFromContextMenu(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(PasteEventFired, this);
+        }
+
+        private void HandleCopyFromContextMenu(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(CopyEventFired, this.Color);
+        }
+
         protected void HandleDirectButtonClick(object sender, EventArgs e)
         {
-            EventUtils.FireTypedEvent(DirectClickEvent, this); 
+            MouseEventArgs mousearg = e as MouseEventArgs;
+            if (mousearg != null && mousearg.Button == MouseButtons.Left)
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                {
+                    EventUtils.FireTypedEvent(CtrlClickEvent, this);
+                }
+                else
+                    EventUtils.FireTypedEvent(DirectClickEvent, this);
+            }
+        }
+
+        void HandleDoubleClickEvent(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(DoubleClickEvent, this);             
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+            {
+                EventUtils.FireTypedEvent(CopyEventFired, this.Color);
+            }
+            else if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            {
+                EventUtils.FireTypedEvent(PasteEventFired, this);
+            }
+            base.OnKeyDown(e);
         }
         #endregion 
 
@@ -194,7 +248,11 @@ namespace GigaFlashWinform.RoomUI
         /// <summary>
         /// Occurs when a user clicks on a light directly. 
         /// </summary>
+        public event TypedDelegate<LightView> CtrlClickEvent;
+
         public event TypedDelegate<LightView> DirectClickEvent;
+
+        public event TypedDelegate<LightView> DoubleClickEvent;
 
         public event TypedDelegate<ColorConfig> SaveFired;
 
@@ -203,18 +261,7 @@ namespace GigaFlashWinform.RoomUI
         public event TypedDelegate<LightView> PasteEventFired; 
         #endregion
 
-        private void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
-            {
-                EventUtils.FireTypedEvent(CopyEventFired, this.Color); 
-            }
-            else if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
-            {
-                EventUtils.FireTypedEvent(PasteEventFired, this); 
-            }
-            base.OnKeyDown(e);
-        }
+
 
     }
 }

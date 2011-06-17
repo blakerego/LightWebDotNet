@@ -209,7 +209,7 @@
             // 
             // allLightView1
             // 
-            this.allLightView1.BackColor = System.Drawing.SystemColors.Control;
+            this.allLightView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.allLightView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.allLightView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.allLightView1.Intensity = 100;

@@ -28,7 +28,7 @@
         /// </summary>
         protected void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.button1 = new GigaFlashWinform.BaseButton();
             this.SuspendLayout();
             // 
             // button1
@@ -58,13 +58,14 @@
             this.Name = "LightView";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Size = new System.Drawing.Size(50, 50);
+            this.Click += new System.EventHandler(this.HandleDirectButtonClick);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private BaseButton button1;
 
     }
 }
