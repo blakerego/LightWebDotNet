@@ -221,7 +221,7 @@ namespace GigaFlashWinform
 
         private void HandleClearClicked(object sender, EventArgs e)
         {
-            mRoom.UpdateRoom(Color.Black);
+            mRoom.RoomIntensity = 0; 
         }
 
         #endregion

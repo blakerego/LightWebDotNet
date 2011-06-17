@@ -287,6 +287,12 @@ namespace GigaFlashWinform.RoomUI
         public int RoomIntensity
         {
             get { return mIntensityBar.Value * 10; }
+
+            
+            set
+            {
+                mIntensityBar.Value = value / 10; 
+            }
         }
 
         public List<LightView> SelectedLights
