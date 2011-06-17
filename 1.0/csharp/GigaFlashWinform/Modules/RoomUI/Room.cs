@@ -128,6 +128,7 @@ namespace GigaFlashWinform.RoomUI
         {
             SelectLight(pSelectedLight);
             mColorModeSelected = true;
+            mHoverIndex = mLightViews.IndexOf(pSelectedLight); 
         }
 
         /// <summary>
@@ -150,6 +151,7 @@ namespace GigaFlashWinform.RoomUI
         /// <param name="value"></param>
         void HandleCtrlClickEvent(LightView value)
         {
+            mColorModeSelected = true; 
             value.Selected = true; 
         }
 
@@ -178,13 +180,25 @@ namespace GigaFlashWinform.RoomUI
                 LightView currentLight = mLightViews[mHoverIndex];
                 if (e.Delta < 0)
                 {
-                    currentLight.IncreaseBrightness();
+                    foreach (LightView light in SelectedLights)
+                    {
+                        light.IncreaseBrightness();
+                        EventUtils.FireDualTypedEvent(LightUpdate, 
+                            mLightViews.IndexOf(light), 
+                            light.Color);
+
+                    }
                 }
                 else if (e.Delta > 0)
                 {
-                    currentLight.DecreaseBrightness(); 
+                    foreach (LightView light in SelectedLights)
+                    {
+                        light.DecreaseBrightness();
+                        EventUtils.FireDualTypedEvent(LightUpdate,
+                            mLightViews.IndexOf(light),
+                            light.Color);
+                    }
                 }
-                EventUtils.FireDualTypedEvent(LightUpdate, mHoverIndex, currentLight.Color);
             }
             else
             {

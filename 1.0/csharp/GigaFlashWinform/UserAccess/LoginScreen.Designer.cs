@@ -53,6 +53,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(197, 48);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TabStop = false;
             this.textBox2.Text = "Welcome to Hydrogen House! Please enter your username:";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -70,7 +71,7 @@
             this.button1.Location = new System.Drawing.Point(60, 129);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 2;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.HandleOKClicked);
@@ -80,7 +81,7 @@
             this.button2.Location = new System.Drawing.Point(140, 129);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 3;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.HandleCancelClicked);
@@ -91,7 +92,7 @@
             this.mCreateNewUserCheckbox.Location = new System.Drawing.Point(115, 90);
             this.mCreateNewUserCheckbox.Name = "mCreateNewUserCheckbox";
             this.mCreateNewUserCheckbox.Size = new System.Drawing.Size(56, 17);
-            this.mCreateNewUserCheckbox.TabIndex = 5;
+            this.mCreateNewUserCheckbox.TabIndex = 1;
             this.mCreateNewUserCheckbox.Text = "create";
             this.mCreateNewUserCheckbox.UseVisualStyleBackColor = true;
             // 
