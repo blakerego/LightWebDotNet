@@ -73,5 +73,13 @@ namespace GigaFlashWinform.UserAccess
         {
             get { return mParentForm; } 
         }
+
+        private void HandleKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                HandleOKClicked(sender, e); 
+            }
+        }
     }
 }

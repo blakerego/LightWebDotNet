@@ -42,6 +42,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleKeyDown);
             // 
             // textBox2
             // 
@@ -84,11 +85,11 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.HandleCancelClicked);
             // 
-            // checkBox1
+            // mCreateNewUserCheckbox
             // 
             this.mCreateNewUserCheckbox.AutoSize = true;
             this.mCreateNewUserCheckbox.Location = new System.Drawing.Point(115, 90);
-            this.mCreateNewUserCheckbox.Name = "checkBox1";
+            this.mCreateNewUserCheckbox.Name = "mCreateNewUserCheckbox";
             this.mCreateNewUserCheckbox.Size = new System.Drawing.Size(56, 17);
             this.mCreateNewUserCheckbox.TabIndex = 5;
             this.mCreateNewUserCheckbox.Text = "create";
