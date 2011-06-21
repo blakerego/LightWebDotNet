@@ -81,6 +81,8 @@
     <Compile Include="Modules\LightSelector\LightSelectorPresenter.cs" />
     <Compile Include="Modules\ModuleCatalog.cs" />
     <Compile Include="Modules\ModuleOptions.cs" />
+    <Compile Include="Modules\Room\LightView\ILightView.cs" />
+    <Compile Include="Modules\Room\LightView\LightViewPresenter.cs" />
     <Compile Include="Modules\Snake\ISnakeView.cs" />
     <Compile Include="Modules\Snake\SnakePresenter.cs" />
     <Compile Include="Modules\Snake\SnakePresFactory.cs" />

@@ -200,7 +200,6 @@
     <Compile Include="Modules\RoomUI\LightView\AllLightView.Designer.cs">
       <DependentUpon>AllLightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\RoomUI\LightView\ILightView.cs" />
     <Compile Include="Modules\RoomUI\LightView\LightView.cs">
       <SubType>UserControl</SubType>
     </Compile>

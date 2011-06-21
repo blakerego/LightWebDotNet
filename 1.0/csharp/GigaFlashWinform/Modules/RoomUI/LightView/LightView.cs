@@ -10,6 +10,7 @@ using gigaFlash;
 using gigaFlash.Delegates;
 using gigaFlash.ConfigObjects;
 using GigaFlashWinform.Modules.RoomUI;
+using gigaFlash.Modules;
 
 namespace GigaFlashWinform.RoomUI
 {

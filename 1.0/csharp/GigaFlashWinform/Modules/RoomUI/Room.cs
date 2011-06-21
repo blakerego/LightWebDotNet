@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using gigaFlash;
 using gigaFlash.Delegates;
 using gigaFlash.ConfigObjects;
+using gigaFlash.Modules;
 
 namespace GigaFlashWinform.RoomUI
 {
@@ -31,9 +32,10 @@ namespace GigaFlashWinform.RoomUI
 
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
             this.Click += new EventHandler(OnRoomClickEvent);
-        }
+		}
+		#endregion
 
-        /// <summary>
+		/// <summary>
         /// Meant to be run after events are hooked up from the presenter.
         /// </summary>
         public void PostInitializiation()
@@ -41,7 +43,6 @@ namespace GigaFlashWinform.RoomUI
             UpdateRoom(ColorUtils.GetRandomColor(),
                 RoomIntensity); 
         }
-        #endregion 
 
         #region Public Methods
         public void UpdateRoom(Color c)
@@ -80,7 +81,9 @@ namespace GigaFlashWinform.RoomUI
             pView.CtrlClickEvent += new TypedDelegate<LightView>(OnCtrlClickEvent);
             pView.SineEventFired += new TypedDelegate<LightView>(OnSineEvent);
             pView.StopEventFired += new TypedDelegate<LightView>(HandleStopEventClicked);
-            mLightViews.Add(pView); 
+            mLightViews.Add(pView);
+
+			EventUtils.FireTypedEvent(LightViewAdded, pView); 
         }
 
         void HandleStopEventClicked(LightView value)
@@ -292,6 +295,8 @@ namespace GigaFlashWinform.RoomUI
         #endregion
 
         #region Members / Properties
+		public event TypedDelegate<gigaFlash.Modules.ILightView> LightViewAdded;
+
         public event TypedDelegate<List<int>> SineEventFired;
 
         public event TypedDelegate<List<int>> StopEventFired; 
@@ -367,5 +372,6 @@ namespace GigaFlashWinform.RoomUI
         #endregion
 
 
-    }
+
+	}
 }

@@ -10,21 +10,23 @@ using gigaFlash.ConfigObjects;
 namespace gigaFlash.Room
 {
     public class RoomPresenter : LightModulePresenterBase
-    {
-        public RoomPresenter(IRoom pView, LightState pState)
+	{
+		#region Constructor
+		public RoomPresenter(IRoom pView, LightState pState)
             : base(pView, pState)
         {
-            mView = pView; 
+            mView = pView;
+			mView.LightViewAdded += new TypedDelegate<ILightView>(OnLightViewAdded);
             mView.LightUpdate += new DualTypedDelegate<int, Color>(OnLightUpdate);
             mView.ColorSaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
             mView.SineEventFired += new TypedDelegate<List<int>>(OnSineFired);
             mView.StopEventFired += new TypedDelegate<List<int>>(OnStopEvent);
-            mView.PostInitializiation(); 
-        }
+            mView.PostInitializiation();
+		}
+		#endregion 
 
-
-        #region Public Methods
-        public void OnLightUpdate(int val1, Color val2)
+		#region Public Methods
+		public void OnLightUpdate(int val1, Color val2)
         {
             if (val1 >= 0)
             {
@@ -48,7 +50,13 @@ namespace gigaFlash.Room
         #endregion 
 
         #region Handlers
-        void OnStopEvent(List<int> value)
+		protected void OnLightViewAdded(ILightView value)
+		{
+			LightViewPresenter lvp = new LightViewPresenter(value);
+			mLightViewPresenters.Add(lvp); 
+		}
+
+        protected void OnStopEvent(List<int> value)
         {
             LightGroup group = new LightGroup(value, mLightState);
             foreach (SineControl sineCtrl in mSineControls)
@@ -67,10 +75,6 @@ namespace gigaFlash.Room
             mSineControls.Add(sineCtrl); 
 
             sineCtrl.Start(); 
-        }
-
-        void OnStopEventInternal()
-        {
         }
 
         protected void OnColorSaveFired(gigaFlash.ConfigObjects.ColorConfig value)
@@ -102,7 +106,9 @@ namespace gigaFlash.Room
 
         public event TypedDelegate<UserPrefObj> RoomSaveFired;
 
-        protected List<SineControl> mSineControls = new List<SineControl>(); 
+        protected List<SineControl> mSineControls = new List<SineControl>();
+
+		protected List<LightViewPresenter> mLightViewPresenters = new List<LightViewPresenter>(); 
         #endregion 
     }
 }

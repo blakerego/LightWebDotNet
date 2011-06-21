@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using gigaFlash.Delegates;
 using gigaFlash.ConfigObjects;
+using gigaFlash.Modules;
 
 namespace gigaFlash
 {
@@ -43,5 +44,10 @@ namespace gigaFlash
         /// Stops any thread. 
         /// </summary>
         event TypedDelegate<List<int>> StopEventFired;
+
+		/// <summary>
+		/// Broadcasts a LightView that will need to be listened to. 
+		/// </summary>
+		event TypedDelegate<ILightView> LightViewAdded; 
     }
 }
