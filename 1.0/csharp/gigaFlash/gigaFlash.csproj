@@ -54,6 +54,8 @@
     <Compile Include="ConfigObjects\RoomConfig.cs" />
     <Compile Include="ConfigObjects\UserPrefObj.cs" />
     <Compile Include="Delegates\Delegates.cs" />
+    <Compile Include="LightCore\ILightState.cs" />
+    <Compile Include="LightCore\LightGroup.cs" />
     <Compile Include="Mainform\IMainformView.cs" />
     <Compile Include="Mainform\MainformButtons\MainformButtonView.cs">
       <SubType>UserControl</SubType>
@@ -64,6 +66,7 @@
     <Compile Include="Mainform\MainFormPresenter.cs" />
     <Compile Include="Modules\AmpSine\AmpSinePresenter.cs" />
     <Compile Include="Modules\AmpSine\AmpSinePresFactory.cs" />
+    <Compile Include="Modules\AmpSine\SineControl.cs" />
     <Compile Include="Modules\AmpSine\IAmpSineView.cs" />
     <Compile Include="Modules\ColorSaver\ColorSaverPresenter.cs" />
     <Compile Include="Modules\ColorSaver\IColorSaverView.cs" />

@@ -92,7 +92,29 @@ namespace GigaFlashWinform.RoomUI
             menu.MenuItems.Add(pasteMenuItem);
             #endregion
 
+            #region Run
+            MenuItem runMenuItem = new MenuItem("Run");
+            MenuItem sineItem = new MenuItem("Sine Fade");
+            sineItem.Click += new EventHandler(HandleSineClicked);
+            runMenuItem.MenuItems.Add(sineItem);
+
+            MenuItem stopItem = new MenuItem("Stop");
+            stopItem.Click += new EventHandler(HandleStopClicked);
+            runMenuItem.MenuItems.Add(stopItem); 
+            menu.MenuItems.Add(runMenuItem); 
+            #endregion 
+
             button1.ContextMenu = menu;
+        }
+
+        void HandleStopClicked(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(StopEventFired, this);
+        }
+
+        void HandleSineClicked(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(SineEventFired, this); 
         }
 
         private void HandlePasteFromContextMenu(object sender, EventArgs e)
@@ -258,7 +280,11 @@ namespace GigaFlashWinform.RoomUI
 
         public event TypedDelegate<Color> CopyEventFired;
 
-        public event TypedDelegate<LightView> PasteEventFired; 
+        public event TypedDelegate<LightView> PasteEventFired;
+
+        public event TypedDelegate<LightView> SineEventFired;
+
+        public event TypedDelegate<LightView> StopEventFired; 
         #endregion
 
 

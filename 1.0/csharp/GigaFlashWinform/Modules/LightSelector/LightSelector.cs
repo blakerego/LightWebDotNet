@@ -18,7 +18,7 @@ namespace GigaFlashWinform
         public LightSelector()
         {
             InitializeComponent();
-            mState = new LightState();
+            mState = new LightState(10);
 
             int counter = 1; 
             foreach (Light l in mState.Lights)

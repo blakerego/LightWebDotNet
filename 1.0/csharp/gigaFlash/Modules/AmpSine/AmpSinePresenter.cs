@@ -10,17 +10,14 @@ namespace gigaFlash.Modules
     public class AmpSinePresenter : LightModulePresenterBase
     {
         #region Constructor 
-        public AmpSinePresenter(IAmpSineView pView, LightState pState)
+        public AmpSinePresenter(IAmpSineView pView, ILightState pState)
             : base(pView, pState)
         {
             mView = pView;
             mView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnStartFired);
             mView.StopFired += new gigaFlash.Delegates.VoidDelegate(OnStopFired);
             mView.TwinkleFired += new gigaFlash.Delegates.VoidDelegate(OnTwinkleFired);
-            mSineWorker = new BackgroundWorker();
-            mSineWorker.WorkerSupportsCancellation = true;
-            mSineWorker.DoWork += new DoWorkEventHandler(OnSineThreadFired);
-            mSineWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnSineFinished);
+            InitializeThread(); 
 
             mTwinkleWorker = new BackgroundWorker();
             mTwinkleWorker.WorkerSupportsCancellation = true;
@@ -28,6 +25,13 @@ namespace gigaFlash.Modules
             mTwinkleWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnSineFinished);
         }
 
+        protected void InitializeThread()
+        {
+            mSineWorker = new BackgroundWorker();
+            mSineWorker.WorkerSupportsCancellation = true;
+            mSineWorker.DoWork += new DoWorkEventHandler(OnSineThreadFired);
+            mSineWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnSineFinished);
+        }
         #endregion 
 
         #region Public Methods
@@ -42,7 +46,7 @@ namespace gigaFlash.Modules
         #endregion 
 
         #region Handlers
-        protected virtual void OnStopFired()
+        public virtual void OnStopFired()
         {
             mContinueSine = false; 
         }

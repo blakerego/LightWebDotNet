@@ -20,7 +20,7 @@ namespace gigaFlash
         
         public static Random RandomSeededGenerator = new Random();
 
-        public static void Flash(LightState pState,
+        public static void Flash(ILightState pState,
             List<Light> pLightRange, Color pFlashColor, 
             int flashRate)
         {
@@ -32,7 +32,7 @@ namespace gigaFlash
             }
         }
 
-        public static void Flash(LightState pState, Light light, Color pFlashColor, int flashRate)
+        public static void Flash(ILightState pState, Light light, Color pFlashColor, int flashRate)
         {
             List<Light> lights = new List<Light>();
             lights.Add(light);

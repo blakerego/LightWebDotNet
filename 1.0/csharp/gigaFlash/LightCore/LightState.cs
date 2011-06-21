@@ -9,12 +9,10 @@ using System.Drawing;
 
 namespace gigaFlash
 {
-    public class LightState
+    public class LightState : ILightState
     {
+        
         #region Constructors 
-        public LightState()
-            : this(10) { }
-
         public LightState(int pNumberOfLights)
             : this(pNumberOfLights, new Connection()) { }
 
@@ -49,7 +47,7 @@ namespace gigaFlash
         #endregion 
 
         #region Public Methods
-        public bool Update(Color color)
+        public void Update(Color color)
         {
             foreach (Light light in mLights)
             {
@@ -57,34 +55,28 @@ namespace gigaFlash
                 light.Green = color.G;
                 light.Blue = color.B; 
             }
-            return Update(); 
+            Update(); 
         }
-        public bool Update()
+        public void Update()
         {
-            try
+            //We need a byte array that has a slot for each color of for each light.
+            byte[] lightArray = new byte[3 * mLights.Count];
+
+            //Initialize the array based on the lights in our collection. 
+            foreach (Light light in mLights)
             {
-                //We need a byte array that has a slot for each color of for each light.
-                byte[] lightArray = new byte[3 * mLights.Count];
-
-                //Initialize the array based on the lights in our collection. 
-                foreach (Light light in mLights)
-                {
-                    int addr = 3 * mLights.IndexOf(light);
-                    lightArray[addr] = (byte)light.Red;
-                    lightArray[addr + 1] = (byte)light.Green;
-                    lightArray[addr + 2] = (byte)light.Blue;
-                }
-
-                IEnumerable<byte> outputList = GetPacketHeaderAsByteArray().Concat(lightArray);
-                byte[] outString = outputList.ToArray<byte>();
-                mConnection.Send(outString);
-                return true; 
+                int addr = 3 * mLights.IndexOf(light);
+                lightArray[addr] = (byte)light.Red;
+                lightArray[addr + 1] = (byte)light.Green;
+                lightArray[addr + 2] = (byte)light.Blue;
             }
-            catch (Exception) { }
-            return false; 
+
+            IEnumerable<byte> outputList = GetPacketHeaderAsByteArray().Concat(lightArray);
+            byte[] outString = outputList.ToArray<byte>();
+            mConnection.Send(outString);
         }
 
-        public bool Clear()
+        public void Clear()
         {
             foreach (Light l in Lights)
             {
@@ -92,7 +84,7 @@ namespace gigaFlash
                 l.Blue = 0;
                 l.Green = 0;
             }
-            return Update(); 
+            Update(); 
         }
         #endregion
 

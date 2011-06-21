@@ -33,5 +33,15 @@ namespace gigaFlash
         /// <param name="pPrefObj"></param>
         void LoadPreferences(UserPrefObj pPrefObj);
 
+        /// <summary>
+        /// Event that is fired when a sine event is fired from a 
+        /// particular light. 
+        /// </summary>
+        event TypedDelegate<List<int>> SineEventFired; 
+
+        /// <summary>
+        /// Stops any thread. 
+        /// </summary>
+        event TypedDelegate<List<int>> StopEventFired;
     }
 }

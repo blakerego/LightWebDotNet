@@ -17,6 +17,8 @@ namespace gigaFlash.Room
             mView = pView; 
             mView.LightUpdate += new DualTypedDelegate<int, Color>(OnLightUpdate);
             mView.ColorSaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
+            mView.SineEventFired += new TypedDelegate<List<int>>(OnSineFired);
+            mView.StopEventFired += new TypedDelegate<List<int>>(OnStopEvent);
             mView.PostInitializiation(); 
         }
 
@@ -46,6 +48,31 @@ namespace gigaFlash.Room
         #endregion 
 
         #region Handlers
+        void OnStopEvent(List<int> value)
+        {
+            LightGroup group = new LightGroup(value, mLightState);
+            foreach (SineControl sineCtrl in mSineControls)
+            {
+                sineCtrl.Stop(); 
+            }
+            mLightState.Update(); 
+        }
+        
+        void OnSineFired(List<int> value)
+        {
+            LightGroup group = new LightGroup(value, mLightState);
+
+            SineControl sineCtrl = new SineControl(); 
+            AmpSinePresenter pres = new AmpSinePresenter(sineCtrl, group);
+            mSineControls.Add(sineCtrl); 
+
+            sineCtrl.Start(); 
+        }
+
+        void OnStopEventInternal()
+        {
+        }
+
         protected void OnColorSaveFired(gigaFlash.ConfigObjects.ColorConfig value)
         {
             UserPrefObj userprefobj;
@@ -74,6 +101,8 @@ namespace gigaFlash.Room
         protected IRoom mView;
 
         public event TypedDelegate<UserPrefObj> RoomSaveFired;
+
+        protected List<SineControl> mSineControls = new List<SineControl>(); 
         #endregion 
     }
 }

@@ -77,8 +77,30 @@ namespace GigaFlashWinform.RoomUI
             pView.CopyEventFired += new TypedDelegate<Color>(HandleCopyEvent);
             pView.PasteEventFired += new TypedDelegate<LightView>(HandlePasteEvent);
             pView.DoubleClickEvent += new TypedDelegate<LightView>(HandleDoubleClickOnLight);
-            pView.CtrlClickEvent += new TypedDelegate<LightView>(HandleCtrlClickEvent);
+            pView.CtrlClickEvent += new TypedDelegate<LightView>(OnCtrlClickEvent);
+            pView.SineEventFired += new TypedDelegate<LightView>(OnSineEvent);
+            pView.StopEventFired += new TypedDelegate<LightView>(HandleStopEventClicked);
             mLightViews.Add(pView); 
+        }
+
+        void HandleStopEventClicked(LightView value)
+        {
+            List<int> indices = new List<int>();
+            foreach (LightView lv in SelectedLights)
+            {
+                indices.Add(mLightViews.IndexOf(lv));
+            }
+            EventUtils.FireTypedEvent(StopEventFired, indices);
+        }
+
+        void OnSineEvent(LightView value)
+        {
+            List<int> indices = new List<int>(); 
+            foreach(LightView lv in SelectedLights) 
+            {
+                indices.Add(mLightViews.IndexOf(lv));
+            }
+            EventUtils.FireTypedEvent(SineEventFired, indices); 
         }
 
 
@@ -149,7 +171,7 @@ namespace GigaFlashWinform.RoomUI
         /// existing selection
         /// </summary>
         /// <param name="value"></param>
-        void HandleCtrlClickEvent(LightView value)
+        void OnCtrlClickEvent(LightView value)
         {
             mColorModeSelected = true; 
             value.Selected = true; 
@@ -270,6 +292,10 @@ namespace GigaFlashWinform.RoomUI
         #endregion
 
         #region Members / Properties
+        public event TypedDelegate<List<int>> SineEventFired;
+
+        public event TypedDelegate<List<int>> StopEventFired; 
+
         protected Color mCopiedColor = Color.Black; 
 
         protected List<LightView> mLightViews = new List<LightView>();
