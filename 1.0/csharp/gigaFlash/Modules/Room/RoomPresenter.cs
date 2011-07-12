@@ -52,8 +52,9 @@ namespace gigaFlash.Room
         #region Handlers
 		protected void OnLightViewAdded(ILightView value)
 		{
-			LightViewPresenter lvp = new LightViewPresenter(value);
+			LightViewPresenter lvp = new LightViewPresenter(value, mLightState.Lights[sLightIndex]);
 			mLightViewPresenters.Add(lvp); 
+			sLightIndex++; 
 		}
 
         protected void OnStopEvent(List<int> value)
@@ -109,6 +110,8 @@ namespace gigaFlash.Room
         protected List<SineControl> mSineControls = new List<SineControl>();
 
 		protected List<LightViewPresenter> mLightViewPresenters = new List<LightViewPresenter>(); 
+		
+		protected static int sLightIndex = 0; 
         #endregion 
     }
 }

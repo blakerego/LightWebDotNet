@@ -60,8 +60,7 @@ namespace gigaFlash.ConfigObjects
             }
             catch (Exception exc)
             {
-                string errMsg = exc.ToString();
-                return "";
+                return exc.ToString();
             }
         }
     }

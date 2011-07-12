@@ -24,10 +24,18 @@ namespace gigaFlash
         #region Public Methods
         public void Send(byte[] pByteArray)
         {
-            mSocket.Send(pByteArray);
-            UdpClient udpclient = new UdpClient(LIGHT_BOX_IP, 6038);
-            udpclient.Client = mSocket;
-            udpclient.Send(pByteArray, pByteArray.Count()); 
+			try 
+			{
+	            mSocket.Send(pByteArray);
+	            UdpClient udpclient = new UdpClient(LIGHT_BOX_IP, 6038);
+	            udpclient.Client = mSocket;
+	            udpclient.Send(pByteArray, pByteArray.Count()); 
+			}
+			catch (SocketException) 
+			{
+				/// occurs when you are sending packets while not connected to 
+				/// the lights (debugging). 
+			}
         }
         #endregion 
 
