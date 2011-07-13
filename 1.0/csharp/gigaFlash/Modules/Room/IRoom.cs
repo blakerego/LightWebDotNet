@@ -48,6 +48,16 @@ namespace gigaFlash
 		/// <summary>
 		/// Broadcasts a LightView that will need to be listened to. 
 		/// </summary>
-		event TypedDelegate<ILightView> LightViewAdded; 
+		event TypedDelegate<ILightView> LightViewAdded;
+
+        /// <summary>
+        /// The room is disposing. 
+        /// </summary>
+        event VoidDelegate Disposing;
+
+        /// <summary>
+        /// Presenter to run this after setting up listener. 
+        /// </summary>
+        void InitializeRoom();
     }
 }

@@ -11,17 +11,12 @@ namespace gigaFlash.Modules
 	/// Consumers of this interface will be making a UI representation of
 	/// the a given light in a Room. 
 	/// </summary>
-	public interface ILightView
+	public interface ILightView : ILight
 	{
 		/// <summary>
 		/// Gets or sets whether the current light is selected
 		/// </summary>
 		bool Selected { get; set; }
-
-		/// <summary>
-		/// Gets or sets the current light's Color
-		/// </summary>
-		Color Color { get; set; }
 
 		/// <summary>
 		/// Gets or sets the light's name. 

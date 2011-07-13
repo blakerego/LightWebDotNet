@@ -19,17 +19,6 @@ namespace GigaFlashWinform.RoomUI
         public Room()
         {
             InitializeComponent();
-            AddLight(lightView1);
-            AddLight(lightView2);
-            AddLight(lightView3);
-            AddLight(lightView4);
-            AddLight(lightView5);
-            AddLight(lightView6);
-            AddLight(lightView10); 
-            AddLight(lightView7);
-            AddLight(lightView8);
-            AddLight(lightView9);
-
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
             this.Click += new EventHandler(OnRoomClickEvent);
 		}
@@ -69,6 +58,20 @@ namespace GigaFlashWinform.RoomUI
         #endregion 
 
         #region Handlers / Helpers
+        public void InitializeRoom()
+        {
+            AddLight(lightView1);
+            AddLight(lightView2);
+            AddLight(lightView3);
+            AddLight(lightView4);
+            AddLight(lightView5);
+            AddLight(lightView6);
+            AddLight(lightView10);
+            AddLight(lightView7);
+            AddLight(lightView8);
+            AddLight(lightView9);
+        }
+
         protected void AddLight(LightView pView)
         {
             pView.DirectClickEvent += new TypedDelegate<LightView>(OnDirectLightClick);
@@ -361,7 +364,7 @@ namespace GigaFlashWinform.RoomUI
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            EventUtils.FireDualTypedEvent(LightUpdate, -1, Color.Black); 
+            //EventUtils.FireDualTypedEvent(LightUpdate, -1, Color.Black); 
             EventUtils.FireEvent(Disposing); 
             if (disposing && (components != null))
             {

@@ -29,7 +29,7 @@ namespace GigaFlashWinform
             ModuleCatalog.Instance.Add(ModuleOptions.Room, new RoomViewFactory()); 
 
 
-            LightState state = new LightState(10);
+            LightState state = new LightState(11);
             MainFormView view = new MainFormView();
             view.StartPosition = FormStartPosition.CenterScreen; 
             MainFormPresenter pres = new MainFormPresenter(view, state);

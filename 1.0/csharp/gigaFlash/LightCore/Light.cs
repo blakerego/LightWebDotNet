@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace gigaFlash
 {
-    public class Light
+    public class Light : ILight
     {
         #region Constructor 
         public Light(int pRed, int pGreen, int pBlue)

@@ -13,11 +13,38 @@ namespace gigaFlash.Modules
         public AmpSinePresenter(IAmpSineView pView, ILightState pState)
             : base(pView, pState)
         {
+            Initialize(pView); 
+        }
+
+        public AmpSinePresenter(IAmpSineView pView, ILightState pState, LightGroup pGroup)
+            : base(pView, pState)
+        {
+            mLightGroup = pGroup;
+            Initialize(pView); 
+        }
+
+        protected void Initialize(IAmpSineView pView)
+        {
             mView = pView;
+            if (mLightGroup != null)
+            {
+                foreach (LightViewPresenter lvp in mLightGroup.Lights)
+                {
+                    //this one updates the UI as well as the lights in the room.
+                    mLights.Add(lvp);
+                }
+            }
+            else
+            {
+                foreach (Light l in mLightState.Lights)
+                {
+                    mLights.Add(l); 
+                }
+            }
             mView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnStartFired);
             mView.StopFired += new gigaFlash.Delegates.VoidDelegate(OnStopFired);
             mView.TwinkleFired += new gigaFlash.Delegates.VoidDelegate(OnTwinkleFired);
-            InitializeThread(); 
+            InitializeThread();
 
             mTwinkleWorker = new BackgroundWorker();
             mTwinkleWorker.WorkerSupportsCancellation = true;
@@ -86,7 +113,7 @@ namespace gigaFlash.Modules
                     Convert.ToInt16(baseGreen * scale),
                     Convert.ToInt16(baseBlue  * scale)
                     );
-                foreach (Light light in mLightState.Lights)
+                foreach (ILight light in mLights)
                 {
                     light.Color = c; 
                 }
@@ -103,7 +130,7 @@ namespace gigaFlash.Modules
 
             List<double> phaseMap = new List<double>();
             List<Color> colorMap = new List<Color>(); 
-            foreach (Light l in mLightState.Lights)
+            foreach (ILight l in mLights)
             {
                 phaseMap.Add(r.Next(2 * 314));
                 colorMap.Add(ColorUtils.GetRandomColor()); 
@@ -113,7 +140,7 @@ namespace gigaFlash.Modules
             {
                 
                 int index = 0; 
-                foreach (Light light in mLightState.Lights)
+                foreach (ILight light in mLights)
                 {
                     double scale = PowerSine(time, phaseMap[index] / 100); 
                     light.Color = Color.FromArgb(
@@ -140,7 +167,11 @@ namespace gigaFlash.Modules
 
         protected BackgroundWorker mTwinkleWorker; 
 
-        protected bool mContinueSine; 
+        protected bool mContinueSine;
+
+        protected LightGroup mLightGroup;
+
+        List<ILight> mLights = new List<ILight>(); 
         #endregion 
     }
 }

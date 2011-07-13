@@ -17,12 +17,15 @@ namespace gigaFlash.Room
         {
             mView = pView;
 			mView.LightViewAdded += new TypedDelegate<ILightView>(OnLightViewAdded);
+            mView.InitializeRoom(); 
             mView.LightUpdate += new DualTypedDelegate<int, Color>(OnLightUpdate);
             mView.ColorSaveFired += new TypedDelegate<gigaFlash.ConfigObjects.ColorConfig>(OnColorSaveFired);
             mView.SineEventFired += new TypedDelegate<List<int>>(OnSineFired);
             mView.StopEventFired += new TypedDelegate<List<int>>(OnStopEvent);
+            mView.Disposing += new VoidDelegate(OnDisposing);
             mView.PostInitializiation();
 		}
+
 		#endregion 
 
 		#region Public Methods
@@ -59,7 +62,9 @@ namespace gigaFlash.Room
 
         protected void OnStopEvent(List<int> value)
         {
-            LightGroup group = new LightGroup(value, mLightState);
+            LightGroup group = new LightGroup(
+                GetLightViewPresentersFromIndices(value),
+                mLightState);
             foreach (SineControl sineCtrl in mSineControls)
             {
                 sineCtrl.Stop(); 
@@ -67,17 +72,36 @@ namespace gigaFlash.Room
             mLightState.Update(); 
         }
         
-        void OnSineFired(List<int> value)
+        protected void OnSineFired(List<int> value)
         {
-            LightGroup group = new LightGroup(value, mLightState);
-
+            LightGroup group = new LightGroup(
+                GetLightViewPresentersFromIndices(value), 
+                mLightState);
             SineControl sineCtrl = new SineControl(); 
-            AmpSinePresenter pres = new AmpSinePresenter(sineCtrl, group);
+            AmpSinePresenter pres = new AmpSinePresenter(sineCtrl, 
+                mLightState, 
+                group);
             mSineControls.Add(sineCtrl); 
 
             sineCtrl.Start(); 
         }
 
+        protected List<LightViewPresenter> GetLightViewPresentersFromIndices(List<int> value)
+        {
+            List<LightViewPresenter> lightGroup = new List<LightViewPresenter>();
+            foreach (int index in value)
+            {
+                try
+                {
+                    lightGroup.Add(mLightViewPresenters[index]);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    //Index does not exist in this light state. 
+                }
+            }
+            return lightGroup; 
+        }
         protected void OnColorSaveFired(gigaFlash.ConfigObjects.ColorConfig value)
         {
             UserPrefObj userprefobj;
@@ -97,6 +121,13 @@ namespace gigaFlash.Room
             }
 
             EventUtils.FireTypedEvent(RoomSaveFired, userprefobj);
+        }
+
+        protected virtual void OnDisposing()
+        {
+            foreach (Light l in mLightState.Lights)
+            {
+            }
         }
         #endregion 
 

@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace gigaFlash.Modules
 {
-	public class LightViewPresenter
+	public class LightViewPresenter : ILight
 	{
 		#region Constructor
 		public LightViewPresenter(ILightView pView, Light pModel)

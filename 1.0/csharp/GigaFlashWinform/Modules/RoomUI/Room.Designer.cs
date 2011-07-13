@@ -30,13 +30,15 @@
             this.lightView2 = new GigaFlashWinform.RoomUI.LightView();
             this.lightView1 = new GigaFlashWinform.RoomUI.LightView();
             this.allLightView1 = new GigaFlashWinform.RoomUI.AllLightView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.mIntensityBar)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mIntensityBar
             // 
             this.mIntensityBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.mIntensityBar.Location = new System.Drawing.Point(102, 133);
+            this.mIntensityBar.Location = new System.Drawing.Point(12, 76);
             this.mIntensityBar.Name = "mIntensityBar";
             this.mIntensityBar.Size = new System.Drawing.Size(148, 45);
             this.mIntensityBar.TabIndex = 11;
@@ -47,11 +49,11 @@
             // 
             this.mBrightnessLabel.AutoSize = true;
             this.mBrightnessLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mBrightnessLabel.Location = new System.Drawing.Point(112, 112);
+            this.mBrightnessLabel.Location = new System.Drawing.Point(35, 55);
             this.mBrightnessLabel.Name = "mBrightnessLabel";
-            this.mBrightnessLabel.Size = new System.Drawing.Size(115, 18);
+            this.mBrightnessLabel.Size = new System.Drawing.Size(69, 18);
             this.mBrightnessLabel.TabIndex = 12;
-            this.mBrightnessLabel.Text = "Room Intensity: ";
+            this.mBrightnessLabel.Text = "Intensity: ";
             // 
             // button1
             // 
@@ -59,11 +61,11 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(102, 59);
+            this.button1.Location = new System.Drawing.Point(12, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 33);
             this.button1.TabIndex = 13;
-            this.button1.Text = "Room Color";
+            this.button1.Text = "Color";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.HandleSetRoomColorClicked);
             // 
@@ -221,15 +223,25 @@
             this.allLightView1.Size = new System.Drawing.Size(50, 50);
             this.allLightView1.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.mBrightnessLabel);
+            this.groupBox1.Controls.Add(this.mIntensityBar);
+            this.groupBox1.Location = new System.Drawing.Point(77, 48);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 130);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Room";
+            // 
             // Room
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.mBrightnessLabel);
-            this.Controls.Add(this.mIntensityBar);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lightView10);
             this.Controls.Add(this.lightView9);
             this.Controls.Add(this.lightView8);
@@ -243,8 +255,9 @@
             this.Name = "Room";
             this.Size = new System.Drawing.Size(337, 280);
             ((System.ComponentModel.ISupportInitialize)(this.mIntensityBar)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -264,6 +277,7 @@
         private System.Windows.Forms.Label mBrightnessLabel;
         private System.Windows.Forms.Button button1;
         private AllLightView allLightView1;
+        private System.Windows.Forms.GroupBox groupBox1;
 
 
 

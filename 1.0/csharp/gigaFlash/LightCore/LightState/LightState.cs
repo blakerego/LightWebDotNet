@@ -100,5 +100,6 @@ namespace gigaFlash
             set { mLights = value; }
         }
         #endregion 
+    
     }
 }

@@ -7,8 +7,7 @@ using System.Drawing;
 namespace gigaFlash
 {
     /// <summary>
-    /// Could be used for the entire light state, or just a group
-    /// of lights.
+    /// To be used for groups of lights. 
     /// </summary>
     public interface ILightState
     {

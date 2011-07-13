@@ -54,7 +54,8 @@
     <Compile Include="ConfigObjects\RoomConfig.cs" />
     <Compile Include="ConfigObjects\UserPrefObj.cs" />
     <Compile Include="Delegates\Delegates.cs" />
-    <Compile Include="LightCore\ILightState.cs" />
+    <Compile Include="LightCore\LightState\ILight.cs" />
+    <Compile Include="LightCore\LightState\ILightState.cs" />
     <Compile Include="LightCore\LightGroup.cs" />
     <Compile Include="Mainform\IMainformView.cs" />
     <Compile Include="Mainform\MainformButtons\MainformButtonView.cs">
@@ -113,7 +114,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="LightCore\LightState.cs" />
+    <Compile Include="LightCore\LightState\LightState.cs" />
     <Compile Include="Modules\IModuleView.cs" />
     <Compile Include="Modules\Room\IRoom.cs" />
     <Compile Include="Modules\Room\RoomPresenter.cs" />
