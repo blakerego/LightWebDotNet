@@ -20,6 +20,7 @@ namespace GigaFlashWinform.RoomUI
         public LightView()
         {
             InitializeComponent();
+
             InitializeContextMenu();
             this.DoubleClick +=new EventHandler(HandleDoubleClickEvent);
             this.button1.DoubleClick += new EventHandler(HandleDoubleClickEvent);
@@ -63,7 +64,10 @@ namespace GigaFlashWinform.RoomUI
                 colorconfig.Name = cd.ColorName; 
                 colorconfig.TotalUseCount = 1; 
                 colorconfig.LastUseDate = DateTime.Now.ToString();
-                EventUtils.FireTypedEvent(SaveFired, colorconfig); 
+                EventUtils.FireTypedEvent(SaveFired, colorconfig);
+
+                mCustomColors.Add(colorconfig);
+                ReloadCustomColors();
             }
         }
 
@@ -131,14 +135,23 @@ namespace GigaFlashWinform.RoomUI
         protected void HandleDirectButtonClick(object sender, EventArgs e)
         {
             MouseEventArgs mousearg = e as MouseEventArgs;
-            if (mousearg != null && mousearg.Button == MouseButtons.Left)
+            if (mousearg != null)
             {
-                if (Control.ModifierKeys == Keys.Control)
+                if (mousearg.Button == MouseButtons.Left)
                 {
-                    EventUtils.FireTypedEvent(CtrlClickEvent, this);
+                    if (Control.ModifierKeys == Keys.Control)
+                    {
+                        EventUtils.FireTypedEvent(CtrlClickEvent, this);
+                    }
+                    else
+                        EventUtils.FireTypedEvent(DirectClickEvent, this);
                 }
-                else
-                    EventUtils.FireTypedEvent(DirectClickEvent, this);
+                else if (mousearg.Button == MouseButtons.Right)
+                {
+                    // Need to re-create context menu. This ensures the custom color menu
+                    // is up to date. 
+                    InitializeContextMenu(); 
+                }
             }
         }
 
@@ -242,20 +255,25 @@ namespace GigaFlashWinform.RoomUI
             set 
             { 
                 mCustomColors = value;
-                foreach(ColorConfig colorConfig in mCustomColors) 
-                {
-                    Color c = Color.FromArgb(colorConfig.Red,
-                        colorConfig.Green, colorConfig.Blue);
-                    if (!mCustomColorDictionary.ContainsKey(colorConfig.Name))
-                    {
-                        mCustomColorDictionary[colorConfig.Name] = c;
-                        MenuItem colorItem = new MenuItem(colorConfig.Name);
-                        colorItem.Click += new EventHandler(colorItem_Click);
-                        if (!mLoadColorMenuItem.MenuItems.Contains(colorItem))
-                            mLoadColorMenuItem.MenuItems.Add(colorItem);
-                    }
-                }
+                ReloadCustomColors(); 
             } 
+        }
+
+        protected virtual void ReloadCustomColors()
+        {
+            foreach (ColorConfig colorConfig in mCustomColors)
+            {
+                Color c = Color.FromArgb(colorConfig.Red,
+                    colorConfig.Green, colorConfig.Blue);
+                if (!mCustomColorDictionary.ContainsKey(colorConfig.Name))
+                {
+                    mCustomColorDictionary[colorConfig.Name] = c;
+                    MenuItem colorItem = new MenuItem(colorConfig.Name);
+                    colorItem.Click += new EventHandler(colorItem_Click);
+                    if (!mLoadColorMenuItem.MenuItems.Contains(colorItem))
+                        mLoadColorMenuItem.MenuItems.Add(colorItem);
+                }
+            }
         }
 
         void colorItem_Click(object sender, EventArgs e)

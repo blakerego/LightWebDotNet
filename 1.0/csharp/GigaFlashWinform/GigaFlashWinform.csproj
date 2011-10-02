@@ -64,6 +64,7 @@
     <Compile Include="BaseUI\BaseButton.Designer.cs">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDEHelper.cs" />
     <Compile Include="Modules\ColorSaver\ColorSaver.cs">
       <SubType>Form</SubType>
     </Compile>

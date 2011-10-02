@@ -23,8 +23,10 @@ namespace gigaFlash.Modules
             : base(pView, pState)
         {
             mView = pView;
-            mLightState = pState; 
+            mLightState = pState;
+            mView.SpeedChanged += new TypedDelegate<int>(OnSpeedChanged);
         }
+
         #endregion 
 
 		#region Handlers
@@ -36,7 +38,7 @@ namespace gigaFlash.Modules
         /// <param name="e"></param>
         protected override void RunContinuously(object sender, DoWorkEventArgs e)
         {
-            Color c = ColorUtils.GetRandomColor();
+            Color c = ThreadColor;
             while (mContinueThread)
             {
                 int snakeParts = mLightState.Lights.Count;
@@ -61,15 +63,22 @@ namespace gigaFlash.Modules
                     }
 
                     mLightState.Update();
-                    System.Threading.Thread.Sleep(200);
+                    System.Threading.Thread.Sleep(100 - mSpeed);
                 }
             }
             mLightState.Clear();
         }
+
+        void OnSpeedChanged(int value)
+        {
+            mSpeed = value; 
+        }
 		#endregion
 
         #region Members / Props
-        ISnakeView mView; 
+        ISnakeView mView;
+
+        protected int mSpeed = 50; 
         #endregion 
     }
 }

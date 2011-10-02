@@ -21,7 +21,9 @@ namespace GigaFlashWinform.RoomUI
             InitializeComponent();
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
             this.Click += new EventHandler(OnRoomClickEvent);
+            this.button1.DoubleClick += new EventHandler(RoomDoubleClickEvent);
 		}
+
 		#endregion
 
 		/// <summary>
@@ -67,9 +69,9 @@ namespace GigaFlashWinform.RoomUI
             AddLight(lightView5);
             AddLight(lightView6);
             AddLight(lightView10);
-            AddLight(lightView7);
-            AddLight(lightView8);
-            AddLight(lightView9);
+            //AddLight(lightView7);
+            //AddLight(lightView8);
+            //AddLight(lightView9);
         }
 
         protected void AddLight(LightView pView)
@@ -255,6 +257,20 @@ namespace GigaFlashWinform.RoomUI
             {
                 InitializeSelectedLight(mLightViews[mHoverIndex]); 
             }
+        }
+
+        void RoomDoubleClickEvent(object sender, EventArgs e)
+        {
+            Color color = ColorUtils.GetRandomColor(); 
+            EventUtils.FireDualTypedEvent(LightUpdate,
+                -1,
+                color);
+            foreach (LightView lv in mLightViews)
+            {
+                lv.Intensity = RoomIntensity;  
+                lv.Color = color;
+            }
+
         }
 
         protected void InitializeSelectedLight(LightView pSelectedLight)

@@ -34,7 +34,7 @@ namespace GigaFlashWinform.Modules
             }
         }
 
-        public event VoidDelegate StartFired;
+        public event TypedDelegate<Color> StartFired;
 
         public event VoidDelegate StopFired;
 
@@ -45,7 +45,11 @@ namespace GigaFlashWinform.Modules
         #region Handlers
         private void mRunButton_Click(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StartFired); 
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                EventUtils.FireTypedEvent(StartFired, cd.Color);
+            }
         }
 
         private void mStopButton_Click(object sender, EventArgs e)
@@ -66,6 +70,13 @@ namespace GigaFlashWinform.Modules
             }
             base.Dispose(disposing);
         }
+        #endregion
+
+        #region IThreadedView Members
+
+
+        public event TypedDelegate<int> SpeedChanged;
+
         #endregion
     }
 }

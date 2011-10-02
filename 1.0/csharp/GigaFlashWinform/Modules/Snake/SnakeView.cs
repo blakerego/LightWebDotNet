@@ -21,7 +21,7 @@ namespace GigaFlashWinform
         #endregion
 
         #region Members / Properties
-        public event VoidDelegate StartFired;
+        public event TypedDelegate<Color> StartFired;
 
         public event VoidDelegate StopFired;
 
@@ -43,12 +43,21 @@ namespace GigaFlashWinform
         #region Handlers
         private void HandleRunSnakeClicked(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StartFired);
+            ColorDialog d = new ColorDialog();
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                EventUtils.FireTypedEvent(StartFired, d.Color);
+            }
         }
 
         private void HandleStopSnakeClicked(object sender, EventArgs e)
         {
             EventUtils.FireEvent(StopFired);
+        }
+
+        private void mIntensityBar_ValueChanged(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent(SpeedChanged, mIntensityBar.Value * 10); 
         }
 
         /// <summary>
@@ -65,6 +74,15 @@ namespace GigaFlashWinform
             base.Dispose(disposing);
         }
         #endregion
+
+
+        #region IThreadedView Members
+
+
+        public event TypedDelegate<int> SpeedChanged;
+
+        #endregion
+
 
     }
 }

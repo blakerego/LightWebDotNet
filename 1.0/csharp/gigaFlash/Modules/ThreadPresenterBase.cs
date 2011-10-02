@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace gigaFlash.Modules
 {
@@ -14,7 +15,7 @@ namespace gigaFlash.Modules
             : base(pView, pState)
         {
             mThreadedView = pView;
-            mThreadedView.StartFired += new gigaFlash.Delegates.VoidDelegate(OnMainThreadStart);
+            mThreadedView.StartFired += new gigaFlash.Delegates.TypedDelegate<Color>(OnMainThreadStart);
             mThreadedView.StopFired += new gigaFlash.Delegates.VoidDelegate(OnStopClicked);
             mThreadedView.Disposing += new gigaFlash.Delegates.VoidDelegate(OnDisposing);
 
@@ -35,8 +36,9 @@ namespace gigaFlash.Modules
             mContinueThread = false;
         }
 
-        protected void OnMainThreadStart()
+        protected void OnMainThreadStart(Color c)
         {
+            ThreadColor = c; 
             mContinueThread = true;
             mThreadedView.RunButtonEnabled = false; 
             mMainThread.RunWorkerAsync();
@@ -60,7 +62,9 @@ namespace gigaFlash.Modules
 
         protected bool mContinueThread;
 
-        BackgroundWorker mMainThread; 
+        BackgroundWorker mMainThread;
+
+        protected Color ThreadColor = ColorUtils.GetRandomColor(); 
         #endregion 
     }
 }

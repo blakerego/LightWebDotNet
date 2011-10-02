@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormView));
             this.button1 = new System.Windows.Forms.Button();
             this.mRoom = new GigaFlashWinform.RoomUI.Room();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -41,7 +42,7 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(343, 33);
+            this.button1.Size = new System.Drawing.Size(453, 33);
             this.button1.TabIndex = 3;
             this.button1.Text = "Clear All";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,7 +55,8 @@
             this.mRoom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mRoom.Location = new System.Drawing.Point(0, 0);
             this.mRoom.Name = "mRoom";
-            this.mRoom.Size = new System.Drawing.Size(343, 296);
+            this.mRoom.RoomIntensity = 100;
+            this.mRoom.Size = new System.Drawing.Size(453, 296);
             this.mRoom.TabIndex = 0;
             // 
             // splitContainer1
@@ -71,7 +73,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Size = new System.Drawing.Size(343, 333);
+            this.splitContainer1.Size = new System.Drawing.Size(453, 333);
             this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -79,11 +81,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 333);
+            this.ClientSize = new System.Drawing.Size(453, 333);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.Name = "MainFormView";
-            this.Text = "HydrogenHaus";
+            this.Text = "Home Light Control";
             this.Load += new System.EventHandler(this.MainFormView_Load);
             this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MainFormView_Scroll);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainFormView_KeyDown);

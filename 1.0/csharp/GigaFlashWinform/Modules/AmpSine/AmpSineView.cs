@@ -21,11 +21,13 @@ namespace GigaFlashWinform.Modules
         #endregion
 
         #region Members / Properties
-        public event VoidDelegate StartFired;
+        public event TypedDelegate<Color> StartFired;
 
         public event VoidDelegate StopFired;
 
-        public event VoidDelegate TwinkleFired; 
+        public event VoidDelegate TwinkleFired;
+
+        public event TypedDelegate<int> SpeedChanged; 
 
         public bool RunButtonEnabled
         {
@@ -55,7 +57,11 @@ namespace GigaFlashWinform.Modules
         #region Handlers
         private void HandleRunButtonClicked(object sender, EventArgs e)
         {
-            EventUtils.FireEvent(StartFired); 
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                EventUtils.FireTypedEvent(StartFired, cd.Color);
+            }
         }
 
         private void HandleStopButtonClicked(object sender, EventArgs e)
@@ -67,12 +73,21 @@ namespace GigaFlashWinform.Modules
         {
             EventUtils.FireEvent(TwinkleFired); 
         }
+
+        private void mIntensityBar_ValueChanged(object sender, EventArgs e)
+        {
+            EventUtils.FireTypedEvent<int>(SpeedChanged, mIntensityBar.Value * 10); 
+        }
         #endregion 
     
         #region IModuleView Members
 
         public new event VoidDelegate Disposing;
 
+        
+
         #endregion
+
+
     }
 }

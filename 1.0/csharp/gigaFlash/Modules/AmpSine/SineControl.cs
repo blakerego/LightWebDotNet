@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gigaFlash.Delegates;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace gigaFlash.Modules
 {
@@ -28,13 +30,17 @@ namespace gigaFlash.Modules
 
         #region IThreadedView Members
 
-        public event gigaFlash.Delegates.VoidDelegate StartFired;
+        public event gigaFlash.Delegates.TypedDelegate<Color> StartFired;
 
         public event gigaFlash.Delegates.VoidDelegate StopFired;
 
         public void Start()
         {
-            EventUtils.FireEvent(StartFired);
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                EventUtils.FireTypedEvent(StartFired, cd.Color);
+            }
         }
 
         public void Stop()
@@ -62,6 +68,13 @@ namespace gigaFlash.Modules
         public void Show() { }
 
         public event gigaFlash.Delegates.VoidDelegate Disposing;
+
+        #endregion
+
+        #region IThreadedView Members
+
+
+        public event TypedDelegate<int> SpeedChanged;
 
         #endregion
     }

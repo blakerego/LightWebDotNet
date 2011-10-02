@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gigaFlash.Delegates;
+using System.Drawing;
 
 namespace gigaFlash.Modules
 {
@@ -11,7 +12,7 @@ namespace gigaFlash.Modules
         /// <summary>
         /// The user has triggered the event to start.  
         /// </summary>
-        event VoidDelegate StartFired;
+        event TypedDelegate<Color> StartFired;
 
         /// <summary>
         /// The user wants to stop. 
@@ -22,6 +23,11 @@ namespace gigaFlash.Modules
         /// <summary>
         /// Allows the RunSnake button to be enabled. 
         /// </summary>
-        bool RunButtonEnabled { get; set; } 
+        bool RunButtonEnabled { get; set; }
+
+        /// <summary>
+        /// The speed of the threaded event has changed. 
+        /// </summary>
+        event TypedDelegate<int> SpeedChanged; 
     }
 }
