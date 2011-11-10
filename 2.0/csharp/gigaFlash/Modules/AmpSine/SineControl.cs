@@ -77,5 +77,52 @@ namespace gigaFlash.Modules
         public event TypedDelegate<int> SpeedChanged;
 
         #endregion
+
+        #region IAmpSineView Members
+
+
+        public event TypedDelegate<Color> Color1Changed;
+
+        public event TypedDelegate<Color> Color2Changed;
+
+        #endregion
+
+        #region IAmpSineView Members
+
+
+        public Color Color1
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Color Color2
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+
+        #region IModuleView Members
+
+        public void ShowDialog()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

@@ -61,7 +61,7 @@ namespace GigaFlashWinform
             LightSelectorMenuItem.Click += new EventHandler(HandleLightSelectorClicked);
             InsertMenuItem.DropDownItems.Add(LightSelectorMenuItem);
 
-            ToolStripMenuItem SineMenuItem = new ToolStripMenuItem("Sine");
+            ToolStripMenuItem SineMenuItem = new ToolStripMenuItem("Pulse");
             SineMenuItem.Click += new EventHandler(mAmpSineButton_Click);
             InsertMenuItem.DropDownItems.Add(SineMenuItem);
             #endregion 

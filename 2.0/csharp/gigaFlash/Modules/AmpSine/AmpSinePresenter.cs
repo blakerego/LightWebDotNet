@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading;
 
 namespace gigaFlash.Modules
 {
@@ -51,8 +52,9 @@ namespace gigaFlash.Modules
             mTwinkleWorker.WorkerSupportsCancellation = true;
             mTwinkleWorker.DoWork += new DoWorkEventHandler(OnTwinkleThreadFired);
             mTwinkleWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnSineFinished);
-        }
 
+            OnStartFired(mView.Color2); 
+        }
 
         protected void InitializeThread()
         {
@@ -80,9 +82,9 @@ namespace gigaFlash.Modules
             mContinueSine = false; 
         }
 
-        protected virtual void OnStartFired(Color pColor)
+        protected virtual void OnStartFired(Color pColor2)
         {
-            SineColor = pColor; 
+            //mColor2 = pColor2; 
             mSineWorker.RunWorkerAsync();
             mContinueSine = true; 
         }
@@ -109,15 +111,15 @@ namespace gigaFlash.Modules
             double time = 0; 
             while (mContinueSine)
             {
-                double scale = PowerSine(time, 0); 
-                Color c = Color.FromArgb(
-                    Convert.ToInt16(SineColor.R * scale),
-                    Convert.ToInt16(SineColor.G * scale),
-                    Convert.ToInt16(SineColor.B  * scale)
-                    );
-                foreach (ILight light in mLights)
+                double sineVal = AmpSinePresenter.PowerSine(time, 0);
+                int red = (int)((mView.Color2.R - mView.Color1.R) * sineVal + mView.Color1.R);
+                int green = (int)((mView.Color2.G - mView.Color1.G) * sineVal + mView.Color1.G);
+                int blue = (int)((mView.Color2.B - mView.Color1.B) * sineVal + mView.Color1.B);
+                foreach (Light light in mLightState.Lights)
                 {
-                    light.Color = c; 
+                    light.Red = red;
+                    light.Green = green;
+                    light.Blue = blue;
                 }
                 mLightState.Update();
                 System.Threading.Thread.Sleep(100 - mSpeed);
@@ -144,7 +146,8 @@ namespace gigaFlash.Modules
                 int index = 0; 
                 foreach (ILight light in mLights)
                 {
-                    double scale = PowerSine(time, phaseMap[index] / 100); 
+                    double scale = PowerSine(time, phaseMap[index] / 100);
+ 
                     light.Color = Color.FromArgb(
                     Convert.ToInt16(colorMap[index].R * scale),
                     Convert.ToInt16(colorMap[index].G * scale),
@@ -176,8 +179,6 @@ namespace gigaFlash.Modules
         protected LightGroup mLightGroup;
 
         List<ILight> mLights = new List<ILight>();
-
-        protected Color SineColor = ColorUtils.GetRandomColor(); 
         #endregion 
     }
 }
