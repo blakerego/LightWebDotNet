@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gigaFlash", "gigaFlash\gigaFlash.csproj", "{EB5680AC-6A29-4416-96F0-8B75D196E1EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigaFlashWinform", "GigaFlashWinform\GigaFlashWinform.csproj", "{F839810D-A6E3-4394-B4AB-D843848B1EA4}"
@@ -23,10 +23,10 @@ Global
 		{F839810D-A6E3-4394-B4AB-D843848B1EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F839810D-A6E3-4394-B4AB-D843848B1EA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = GigaFlashWinform\GigaFlashWinform.csproj
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = GigaFlashWinform\GigaFlashWinform.csproj
 	EndGlobalSection
 EndGlobal
