@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightWeb", "LightWeb\LightW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightWeb.Tests", "LightWeb.Tests\LightWeb.Tests.csproj", "{D6F468DE-A87F-44F5-A16D-B117D7055464}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gigaFlash", "gigaFlash\gigaFlash.csproj", "{EB5680AC-6A29-4416-96F0-8B75D196E1EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightCore", "LightCoreDotNet\LightCore\LightCore.csproj", "{EB5680AC-6A29-4416-96F0-8B75D196E1EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
