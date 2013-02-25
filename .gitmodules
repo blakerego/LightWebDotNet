@@ -1,0 +1,3 @@
+[submodule "LightCoreDotNet"]
+	path = LightCoreDotNet
+	url = git@github.com:blakerego/LightCoreDotNet.git
