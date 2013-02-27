@@ -208,6 +208,12 @@
     <Content Include="Views\Color\Edit.cshtml" />
     <Content Include="Views\Color\Delete.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LightCoreDotNet\LightCore\LightCore.csproj">
+      <Project>{EB5680AC-6A29-4416-96F0-8B75D196E1EC}</Project>
+      <Name>LightCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
